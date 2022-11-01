@@ -1,0 +1,58 @@
+html,body {
+    font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+}
+.nav-top {
+    font-weight: 800;
+    font-size: 12px;
+}
+.nav-top > li {
+    margin-left: 1em;
+}
+.nav-top > li > a {
+    color: #fff;
+}
+.nav-bottom {
+    font-weight: 800;
+    font-size: 12px;
+}
+.nav-bottom > li {
+    margin-left: 1em;
+}
+.nav-bottom > li > a {
+    color: #fff;
+}
+.btn {
+    font-weight: 800;
+}
+.to-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+}
+.grad-hero {
+    background-image: linear-gradient(0deg,#0000 5%,#000);
+}
+.z-index-1 {
+    z-index: 1;
+}
+.swiper-pagination-bullet-active {
+    /* background: #167841 !important; */
+    background: #000 !important;
+    width: 5em !important;
+    border-radius: 50em !important;
+}
+.space-m {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.space-xl {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.badge {
+    border-radius: 50em;
+    padding: 5px 20px 5px 20px;
+}
