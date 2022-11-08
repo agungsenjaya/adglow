@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::GET('/','ClientController@home')->name('home');
+Route::GET('/','ClientController@home')->name('index');
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AdminController@home')->name('home');
+
+Route::get('/movies', 'AdminController@movies')->name('admin.movies');

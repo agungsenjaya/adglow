@@ -4,7 +4,6 @@ html,body {
 }
 .nav-top {
     font-weight: 800;
-    font-size: 12px;
 }
 .nav-top > li {
     margin-left: 1em;
@@ -12,19 +11,18 @@ html,body {
 .nav-top > li > a {
     color: #fff;
 }
-.nav-bottom {
+/* .nav-bottom {
     font-weight: 800;
-    font-size: 12px;
-}
+} */
 .nav-bottom > li {
     margin-left: 1em;
 }
 .nav-bottom > li > a {
     color: #fff;
 }
-.btn {
+/* .btn {
     font-weight: 800;
-}
+} */
 .to-top {
     position: absolute;
     top: 0;
@@ -55,4 +53,7 @@ html,body {
 .badge {
     border-radius: 50em;
     padding: 5px 20px 5px 20px;
+}
+.bg-dark-2 {
+    background-color: #1c1b1b;
 }

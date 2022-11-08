@@ -1,9 +1,9 @@
-<footer class="space-xl bg-black">
+<footer class="space-m bg-black">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <img src="https://dummyimage.com/800x300" alt="" width="100%">
-                <p class="my-3 fw-bold">&copy; 2022 - PT Sinema Digital Indonesia</p>
+                <img src="{{ asset('img/logo.png') }}" alt="" width="100%" class="border-0">
+                <!-- <p class="my-3 fw-bold">&copy; 2022 - PT Sinema Digital Indonesia</p> -->
             </div>
             <div class="col-md-3">
             <ul class="nav flex-column nav-bottom">
@@ -57,3 +57,11 @@
         </div>
     </div>
 </footer>
+<div class="bg-black">
+  <div class="container">
+    <hr class="m-0">
+    <div class="py-4 text-center">
+      &copy; Copyright {{ date('Y') }} PT Sinema Digital Indonesia
+    </div>
+  </div>
+</div>
