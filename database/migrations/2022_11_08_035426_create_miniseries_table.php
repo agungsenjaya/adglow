@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommercialsTable extends Migration
+class CreateMiniSeriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCommercialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commercials', function (Blueprint $table) {
+        Schema::create('miniseries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('img');
@@ -37,6 +37,6 @@ class CreateCommercialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commercials');
+        Schema::dropIfExists('miniseries');
     }
 }

@@ -9,9 +9,6 @@
 
     <title>DASHBOARD | {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +18,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    @yield('css')
 </head>
 <body>
     {{--<div id="app">
@@ -215,9 +213,11 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       @yield('content')
-
     </main>
   </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  @yield('js')
 </body>
 </html>

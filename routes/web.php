@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
+// Route::GET('/', function () {
 //     return view('welcome');
 // });
 
@@ -24,6 +24,10 @@ Auth::routes([
     'reset' => false,
 ]);
 
-Route::get('/home', 'AdminController@home')->name('home');
+Route::GET('/home', 'AdminController@home')->name('home');
 
-Route::get('/movies', 'AdminController@movies')->name('admin.movies');
+Route::GET('/movies', 'AdminController@movies')->name('admin.movies');
+Route::GET('/movies/create', 'AdminController@movies_create')->name('admin.movies_create');
+Route::POST('/movies/store', 'AdminController@movies_store')->name('admin.movies_store');
+Route::GET('/movies/edit/{id}', 'AdminController@movies_edit')->name('admin.movies_edit');
+Route::POST('/movies/update/{id}', 'AdminController@movies_update')->name('admin.movies_update');
