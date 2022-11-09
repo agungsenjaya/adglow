@@ -4,12 +4,15 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-        <h1 class="h5">Movies Create</h1>
+<h1 class="h4">Movies Create</h1>
       </div>
       <section>
         <div class="card">
           <div class="card-body">
-          <form action="{{ route('admin.movies_store') }}" method="POST">
+          @foreach ($errors->all() as $error)
+              {{ $error }}<br/>
+          @endforeach
+          <form action="{{ route('admin.movies_store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
             <div class="col">
@@ -23,12 +26,12 @@ $no = 1;
             </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Tgl Tayang</label>
+              <label class="form-label">Tanggal Tayang</label>
               <input type="date" class="form-control" name="tgl_tayang" required>
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
-              <input class="form-control" id="settime" type="time" step="1" />
+              <input class="form-control" type="time" name="duration" step="1">
             </div>
             </div>
             <div class="row mb-3">
@@ -43,8 +46,8 @@ $no = 1;
           </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Trailer</label>
-              <input type="text" class="form-control" name="producer" required>
+              <label class="form-label">Trailer (Optional)</label>
+              <input type="text" class="form-control" name="trailer">
             </div>
             <div class="col">
               <label class="form-label">Online Movie (Optional)</label>
@@ -75,10 +78,8 @@ $no = 1;
           ['font', ['strikethrough', 'superscript', 'subscript']],
           ['color', ['color']],
           ['insert', ['link', 'video']],
-          // ['view', ['fullscreen', 'codeview', 'help']],
         ],
-        fontNames: ['Open Sans']
+        fontNames: ['Kanit']
   });
-  // document.getElementById("settime").value = "13:24:00";
 </script>
 @endsection

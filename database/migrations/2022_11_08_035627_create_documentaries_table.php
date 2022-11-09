@@ -19,7 +19,7 @@ class CreateDocumentariesTable extends Migration
             $table->string('img');
             $table->date('tgl_tayang');
             $table->string('producer');
-            $table->string('direct');
+            $table->string('director');
             $table->string('artist')->nullable();
             $table->string('trailer')->nullable();
             $table->string('link')->nullable();

@@ -12,7 +12,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('img/icon.png') }}" type="image/x-icon">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -78,61 +79,60 @@
     </div>--}}
 
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <header class="navbar navbar-dark sticky-top bg-black flex-md-nowrap p-0">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 py-1 px-3 fs-6 text-center" href="#">
     <img src="{{ asset('img/logo.png') }}" alt="" width="100">
   </a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-nav">
+  <div class="navbar-nav me-2 d-none d-md-block">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="px-5 btn btn-primary text-white rounded-pill" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="bi-power me-2"></i>Sign out
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
     </div>
   </div>
 </header>
 
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-black sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column">
-          <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home" class="align-text-bottom"></span>
-              Dashboard
-            </a>
-          </li> -->
+        <ul class="nav flex-column nav-admin">
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file" class="align-text-bottom"></span>
+            <a class="nav-link" href="{{ route('home') }}">
+              
               Dashboard
             </a>
           </li>
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#movies" aria-expanded="false">
                   <div>
+                    
                     Movies
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="movies">
-                  <a href="#" class="list-group-item list-group-item-action">List Movies</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Movies</a>
+                <div class="list-group collapse nav-admin-sub" id="movies">
+                  <a href="{{ route('admin.movies') }}" class="list-group-item list-group-item-action">List Movies</a>
+                  <a href="{{ route('admin.movies_create') }}" class="list-group-item list-group-item-action">Create Movies</a>
                 </div>
               </li>
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#miniseries" aria-expanded="false">
                   <div>
+                    
                     Miniseries
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="miniseries">
+                <div class="list-group collapse nav-admin-sub" id="miniseries">
                   <a href="#" class="list-group-item list-group-item-action">List Miniseries</a>
                   <a href="#" class="list-group-item list-group-item-action">Create Miniseries</a>
                 </div>
@@ -140,13 +140,14 @@
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#tvcommercials" aria-expanded="false">
                   <div>
+                    
                     Tv Commercials
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="tvcommercials">
+                <div class="list-group collapse nav-admin-sub" id="tvcommercials">
                   <a href="#" class="list-group-item list-group-item-action">List Tv Commercials</a>
                   <a href="#" class="list-group-item list-group-item-action">Create Tv Commercials</a>
                 </div>
@@ -154,13 +155,14 @@
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#music" aria-expanded="false">
                   <div>
+                    
                     Music
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="music">
+                <div class="list-group collapse nav-admin-sub" id="music">
                   <a href="#" class="list-group-item list-group-item-action">List Music</a>
                   <a href="#" class="list-group-item list-group-item-action">Create Music</a>
                 </div>
@@ -168,13 +170,14 @@
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#book" aria-expanded="false">
                   <div>
+                    
                     Book
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="book">
+                <div class="list-group collapse nav-admin-sub" id="book">
                   <a href="#" class="list-group-item list-group-item-action">List Book</a>
                   <a href="#" class="list-group-item list-group-item-action">Create Book</a>
                 </div>
@@ -182,15 +185,16 @@
           <li class="nav-item">
                 <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#documentary" aria-expanded="false">
                   <div>
-                    Documentary & Tv Program
+                    
+                    Doc & Tv Program
                   </div>
                   <div>
                     <span class="bi-chevron-down"></span>
                   </div>
                 </a>
-                <div class="list-group collapse" id="documentary">
-                  <a href="#" class="list-group-item list-group-item-action">List Documentary & Tv Program</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Documentary & Tv Program</a>
+                <div class="list-group collapse nav-admin-sub" id="documentary">
+                  <a href="#" class="list-group-item list-group-item-action">List Doc & Tv Program</a>
+                  <a href="#" class="list-group-item list-group-item-action">Create Doc & Tv Program</a>
                 </div>
               </li>
         </ul>
@@ -201,10 +205,11 @@
             <span data-feather="plus-circle" class="align-text-bottom"></span>
           </a>
         </h6>
-        <ul class="nav flex-column mb-2">
+        <ul class="nav flex-column mb-2 nav-admin">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Setting Account
+            
+            Setting Account
             </a>
           </li>
         </ul>

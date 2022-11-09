@@ -31,14 +31,14 @@ class AdminController extends Controller
     public function movies_edit($id)
     {
         $data = Movie::find($id);
-        return view('layouts.movies',compact('data'));
+        return view('layouts.movies_edit',compact('data'));
     }
 
-    public function movie_store(Request $request)
+    public function movies_store(Request $request)
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:movies',
-            'img' => 'required|image'
+            'img' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
@@ -53,7 +53,8 @@ class AdminController extends Controller
                 'img' => 'img/movies/' . $img_new,
                 'tgl_tayang' => $request->tgl_tayang,
                 'producer' => $request->producer,
-                'direct' => $request->direct,
+                'duration' => $request->duration ? $request->duration : NULL,
+                'director' => $request->director,
                 'artist' => $request->artist ? $request->artist : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
                 'link' => $request->link ? $request->link : NULL,
@@ -67,12 +68,11 @@ class AdminController extends Controller
         }
     }
 
-    public function movie_update(Request $request, $id)
+    public function movies_update(Request $request, $id)
     {
         $data = Movie::find($id);
         $valid = Validator::make($request->all(), [
-            'title' => 'required|unique:movies',
-            'img' => 'required|image'
+            'title' => 'required',
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
@@ -87,7 +87,8 @@ class AdminController extends Controller
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang;
             $data->producer = $request->producer;
-            $data->direct = $request->direct;
+            $data->duration = $request->duration ? $request->duration : NULL;
+            $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
             $data->link = $request->link ? $request->link : NULL;

@@ -3,7 +3,20 @@
         <div class="row">
             <div class="col-md-3">
                 <img src="{{ asset('img/logo.png') }}" alt="" width="100%" class="border-0">
-                <!-- <p class="my-3 fw-bold">&copy; 2022 - PT Sinema Digital Indonesia</p> -->
+
+                <ul class="nav justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="bi-instagram"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="bi-youtube"></i>
+                    </a>
+                  </li>
+                </ul>
+                
             </div>
             <div class="col-md-3">
             <ul class="nav flex-column nav-bottom">
