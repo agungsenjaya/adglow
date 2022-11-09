@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->string('artist')->nullable();
             $table->string('trailer')->nullable();
             $table->string('link')->nullable();
-            $table->string('durasi')->nullable();
+            $table->string('duration')->nullable();
             $table->longText('description')->nullable();
             $table->string('slug');
             $table->timestamps();

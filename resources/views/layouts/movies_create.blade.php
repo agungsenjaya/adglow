@@ -28,7 +28,7 @@ $no = 1;
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
-              <input type="text" class="form-control" name="durasi">
+              <input class="form-control" id="settime" type="time" step="1" />
             </div>
             </div>
             <div class="row mb-3">
@@ -53,8 +53,7 @@ $no = 1;
           </div>
           <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
-              <!-- <textarea name="description" id="summernote"></textarea> -->
-              <div id="summernote" name="description"></div>
+              <textarea name="description" id="summernote"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -63,17 +62,23 @@ $no = 1;
       </section>
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 @endsection
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
   $('#summernote').summernote({
     tabsize: 2,
-    height: 100
+    height: 400,
+    toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['font', ['strikethrough', 'superscript', 'subscript']],
+          ['color', ['color']],
+          ['insert', ['link', 'video']],
+          // ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+        fontNames: ['Open Sans']
   });
-  // $('.datepicker').datepicker();
+  // document.getElementById("settime").value = "13:24:00";
 </script>
 @endsection
