@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use App\MiniSeries;
 use DB,Validator,Str,Session;
 
 class AdminController extends Controller
@@ -98,7 +99,92 @@ class AdminController extends Controller
             
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
-                return redirect()->route('admin.movies');
+                return redirect()->route('admin.miniseries');
+            }
+        }
+    }
+
+    public function miniseries()
+    {
+        return view('layouts.miniseries')->with('miniseries', MiniSeries::all());
+    }
+    
+    public function miniseries_create()
+    {
+        return view('layouts.miniseries_create');
+    }
+    
+    public function miniseries_edit($id)
+    {
+        $data = MiniSeries::find($id);
+        return view('layouts.miniseries_edit',compact('data'));
+    }
+
+    public function miniseries_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:miniseries',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/miniseries', $img_new);
+
+            $data = MiniSeries::create([
+                'title' => $request->title,
+                'img' => 'img/miniseries/' . $img_new,
+                'tgl_tayang' => $request->tgl_tayang,
+                'producer' => $request->producer,
+                'duration' => $request->duration ? $request->duration : NULL,
+                'director' => $request->director,
+                'artist' => $request->artist ? $request->artist : NULL,
+                'trailer' => $request->trailer ? $request->trailer : NULL,
+                'link' => $request->link ? $request->link : NULL,
+                'description' => $request->description,
+                'slug' => Str::slug($request->title),
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.miniseries');
+            }
+        }
+    }
+
+    public function miniseries_update(Request $request, $id)
+    {
+        $data = MiniSeries::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/miniseries', $img_new);
+                $data->img = 'img/miniseries/' . $img_new;
+            }
+            $data->title = $request->title;
+            $data->tgl_tayang = $request->tgl_tayang;
+            $data->producer = $request->producer;
+            $data->duration = $request->duration ? $request->duration : NULL;
+            $data->director = $request->director;
+            $data->artist = $request->artist ? $request->artist : NULL;
+            $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->link = $request->link ? $request->link : NULL;
+            $data->description = $request->description;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+            
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.miniseries');
             }
         }
     }

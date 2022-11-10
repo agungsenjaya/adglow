@@ -33,7 +33,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="card bg-black">
                     <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
-                        <div class="badge bg-light text-dark">Movies</div>
+                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>

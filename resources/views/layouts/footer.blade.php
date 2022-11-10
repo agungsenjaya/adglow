@@ -57,10 +57,10 @@
             <ul class="nav flex-column nav-bottom">
             <li class="nav-item">
                 <a class="nav-link"disabled>
-                <i class="bi-telephone-fill me-3"></i>085759794605</a>
+                <i class="bi-telephone-fill me-3"></i>xxxxx</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"disabled><i class="bi-envelope-open-fill me-3"></i>admin@adglow.co.id</a>
+                <a class="nav-link"disabled><i class="bi-envelope-open-fill me-3"></i>cs@adglow.co.id</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"disabled><i class="bi-geo-alt-fill me-3"></i>Jl. Gd Graha Mustika Ratu, Lantai 7, Suite 707 Jl Gatot Subroto Kav 74-74, Jakarta 12870</a>
@@ -73,7 +73,7 @@
 <div class="bg-black">
   <div class="container">
     <hr class="m-0">
-    <div class="py-4 text-center">
+    <div class="py-4 text-center text-uppercase">
       &copy; Copyright {{ date('Y') }} PT Sinema Digital Indonesia
     </div>
   </div>
