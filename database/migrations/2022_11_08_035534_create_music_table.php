@@ -17,10 +17,11 @@ class CreateMusicTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('img');
-            $table->string('creator');
+            $table->date('tgl_tayang')->nullable();
+            $table->string('creator')->nullable();
             $table->string('artist')->nullable();
             $table->string('trailer')->nullable();
-            $table->string('link')->nullable();
+            $table->json('link')->nullable();
             $table->longText('description')->nullable();
             $table->string('slug');
             $table->timestamps();

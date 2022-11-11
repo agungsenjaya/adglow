@@ -148,8 +148,8 @@
                   </div>
                 </a>
                 <div class="list-group collapse nav-admin-sub" id="tvcommercials">
-                  <a href="#" class="list-group-item list-group-item-action">List Tv Commercials</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Tv Commercials</a>
+                  <a href="{{ route('admin.commercial') }}" class="list-group-item list-group-item-action">List Tv Commercials</a>
+                  <a href="{{ route('admin.commercial_create') }}" class="list-group-item list-group-item-action">Create Tv Commercials</a>
                 </div>
               </li>
           <li class="nav-item">
@@ -163,8 +163,8 @@
                   </div>
                 </a>
                 <div class="list-group collapse nav-admin-sub" id="music">
-                  <a href="#" class="list-group-item list-group-item-action">List Music</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Music</a>
+                  <a href="{{ route('admin.music') }}" class="list-group-item list-group-item-action">List Music</a>
+                  <a href="{{ route('admin.music_create') }}" class="list-group-item list-group-item-action">Create Music</a>
                 </div>
               </li>
           <li class="nav-item">

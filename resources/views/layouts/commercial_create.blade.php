@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-<h1 class="h4">Movies Create</h1>
+<h1 class="h4">Commercial Create</h1>
       </div>
       <section>
         <div class="card">
@@ -12,7 +12,7 @@ $no = 1;
           @foreach ($errors->all() as $error)
               {{ $error }}<br/>
           @endforeach
-          <form action="{{ route('admin.movies_store') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('admin.commercial_store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
             <div class="col">
@@ -26,16 +26,6 @@ $no = 1;
             </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Tanggal Tayang</label>
-              <input type="date" class="form-control" name="tgl_tayang" required>
-            </div>
-            <div class="col">
-              <label class="form-label">Durasi (Optional)</label>
-              <input class="form-control" type="time" name="duration" step="1">
-            </div>
-            </div>
-            <div class="row mb-3">
-            <div class="col">
               <label class="form-label">Producer</label>
               <input type="text" class="form-control" name="producer" required>
             </div>
@@ -45,10 +35,6 @@ $no = 1;
             </div>
           </div>
             <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Trailer (Optional)</label>
-              <input type="text" class="form-control" name="trailer">
-            </div>
             <div class="col">
               <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" name="link">

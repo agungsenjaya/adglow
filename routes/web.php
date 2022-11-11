@@ -37,3 +37,15 @@ Route::GET('/miniseries/create', 'AdminController@miniseries_create')->name('adm
 Route::POST('/miniseries/store', 'AdminController@miniseries_store')->name('admin.miniseries_store');
 Route::GET('/miniseries/edit/{id}', 'AdminController@miniseries_edit')->name('admin.miniseries_edit');
 Route::POST('/miniseries/update/{id}', 'AdminController@miniseries_update')->name('admin.miniseries_update');
+
+Route::GET('/commercial', 'AdminController@commercial')->name('admin.commercial');
+Route::GET('/commercial/create', 'AdminController@commercial_create')->name('admin.commercial_create');
+Route::POST('/commercial/store', 'AdminController@commercial_store')->name('admin.commercial_store');
+Route::GET('/commercial/edit/{id}', 'AdminController@commercial_edit')->name('admin.commercial_edit');
+Route::POST('/commercial/update/{id}', 'AdminController@commercial_update')->name('admin.commercial_update');
+
+Route::GET('/music', 'AdminController@music')->name('admin.music');
+Route::GET('/music/create', 'AdminController@music_create')->name('admin.music_create');
+Route::POST('/music/store', 'AdminController@music_store')->name('admin.music_store');
+Route::GET('/music/edit/{id}', 'AdminController@music_edit')->name('admin.music_edit');
+Route::POST('/music/update/{id}', 'AdminController@music_update')->name('admin.music_update');

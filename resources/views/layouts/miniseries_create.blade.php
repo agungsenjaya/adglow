@@ -44,7 +44,7 @@ $no = 1;
               <input type="text" class="form-control" name="trailer">
             </div>
             <div class="col">
-              <label class="form-label">Online Movie (Optional)</label>
+              <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" name="link">
             </div>
           </div>

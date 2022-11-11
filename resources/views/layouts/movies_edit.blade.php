@@ -50,7 +50,7 @@ $no = 1;
               <input type="text" class="form-control" name="trailer" value="{{ $data->trailer ? $data->trailer : NULL }}">
             </div>
             <div class="col">
-              <label class="form-label">Online Movie (Optional)</label>
+              <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" value="{{ $data->link ? $data->link : NULL }}" name="link">
             </div>
           </div>

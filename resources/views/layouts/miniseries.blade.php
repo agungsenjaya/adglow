@@ -51,7 +51,7 @@ $no = 1;
                           <li><a class="dropdown-item" href="{{ $mini->trailer }}" target="_blank">Trailer</a></li>
                           @endif
                           @if($mini->link)
-                          <li><a class="dropdown-item" href="{{ $mini->link }}" target="_blank">Online Movie</a></li>
+                          <li><a class="dropdown-item" href="{{ $mini->link }}" target="_blank">Link</a></li>
                           @endif
                           <li><a class="dropdown-item" href="{{ route('admin.miniseries_edit', ['id' => $mini -> id]) }}">Edit</a></li>
                         </ul>

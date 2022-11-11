@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\MiniSeries;
+use App\Commercial;
+use App\Music;
 use DB,Validator,Str,Session;
+use stdClass;
 
 class AdminController extends Controller
 {
@@ -185,6 +188,177 @@ class AdminController extends Controller
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
                 return redirect()->route('admin.miniseries');
+            }
+        }
+    }
+
+    public function commercial()
+    {
+        return view('layouts.commercial')->with('commercial', Commercial::all());
+    }
+    
+    public function commercial_create()
+    {
+        return view('layouts.commercial_create');
+    }
+    
+    public function commercial_edit($id)
+    {
+        $data = Commercial::find($id);
+        return view('layouts.commercial_edit',compact('data'));
+    }
+
+    public function commercial_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:commercials',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/commercial', $img_new);
+
+            $data = Commercial::create([
+                'title' => $request->title,
+                'img' => 'img/commercial/' . $img_new,
+                'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'producer' => $request->producer,
+                'director' => $request->director,
+                'artist' => $request->artist ? $request->artist : NULL,
+                'trailer' => $request->trailer ? $request->trailer : NULL,
+                'link' => $request->link ? $request->link : NULL,
+                'description' => $request->description ? $request->description : NULL,
+                'slug' => Str::slug($request->title),
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.commercial');
+            }
+        }
+    }
+
+    public function commercial_update(Request $request, $id)
+    {
+        $data = Commercial::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/commercial', $img_new);
+                $data->img = 'img/commercial/' . $img_new;
+            }
+            $data->title = $request->title;
+            $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
+            $data->producer = $request->producer;
+            $data->director = $request->director;
+            $data->artist = $request->artist ? $request->artist : NULL;
+            $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->link = $request->link ? $request->link : NULL;
+            $data->description = $request->description ? $request->description : NULL;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+            
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.commercial');
+            }
+        }
+    }
+
+    public function music()
+    {
+        return view('layouts.music')->with('music', Music::all());
+    }
+    
+    public function music_create()
+    {
+        return view('layouts.music_create');
+    }
+    
+    public function music_edit($id)
+    {
+        $data = Music::find($id);
+        return view('layouts.music_edit',compact('data'));
+    }
+
+    public function music_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:music',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/music', $img_new);
+
+            $link = new stdClass();
+            $link->spotify = $request->spotify ? $request->spotify : NULL;
+            $link->joox = $request->joox ? $request->joox : NULL;
+            $link->apple = $request->apple ? $request->apple : NULL;
+            $link = array($link);
+
+            $data = Music::create([
+                'title' => $request->title,
+                'img' => 'img/music/' . $img_new,
+                'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'creator' => $request->creator ? $request->creator : NULL,
+                'artist' => $request->artist ? $request->artist : NULL,
+                'trailer' => $request->trailer ? $request->trailer : NULL,
+                'link' => json_encode($link),
+                'description' => $request->description ? $request->description : NULL,
+                'slug' => Str::slug($request->title),
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.music');
+            }
+        }
+    }
+
+    public function music_update(Request $request, $id)
+    {
+        $data = Music::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/music', $img_new);
+                $data->img = 'img/music/' . $img_new;
+            }
+            $data->title = $request->title;
+            $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
+            $data->producer = $request->producer;
+            $data->director = $request->director;
+            $data->artist = $request->artist ? $request->artist : NULL;
+            $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->link = $request->link ? $request->link : NULL;
+            $data->description = $request->description ? $request->description : NULL;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+            
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.music');
             }
         }
     }
