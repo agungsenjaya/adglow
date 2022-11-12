@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="{{ asset('img/icon.png') }}" type="image/x-icon">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="true">
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     @yield('css')
@@ -221,8 +221,14 @@
     </main>
   </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" data-turbolinks-track="true"></script>
+  <script src="{{ asset('js/app.js') }}" data-turbolinks-track="true"></script>
+  <script>
+    $(document).on('turbolinks:load',function() {
+      //infinite_scroll()
+      console.log('turbolinks:load fired');
+    });
+  </script>
   @yield('js')
 </body>
 </html>

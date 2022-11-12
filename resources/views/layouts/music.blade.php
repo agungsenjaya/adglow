@@ -74,6 +74,6 @@ $no = 1;
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script>
-  $('#table1').DataTable();
+    $('#table1').DataTable();
 </script>
 @endsection

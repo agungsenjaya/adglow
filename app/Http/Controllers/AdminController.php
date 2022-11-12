@@ -345,13 +345,19 @@ class AdminController extends Controller
                 $img->move('img/music', $img_new);
                 $data->img = 'img/music/' . $img_new;
             }
+
+            $link = new stdClass();
+            $link->spotify = $request->spotify ? $request->spotify : NULL;
+            $link->joox = $request->joox ? $request->joox : NULL;
+            $link->apple = $request->apple ? $request->apple : NULL;
+            $link = array($link);
+
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
-            $data->producer = $request->producer;
-            $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
+            $data->creator = $request->creator ? $request->creator : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
-            $data->link = $request->link ? $request->link : NULL;
+            $data->link = json_encode($link);
             $data->description = $request->description ? $request->description : NULL;
             $data->slug = Str::slug($request->title);
             $data->save();
