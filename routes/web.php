@@ -49,3 +49,15 @@ Route::GET('/music/create', 'AdminController@music_create')->name('admin.music_c
 Route::POST('/music/store', 'AdminController@music_store')->name('admin.music_store');
 Route::GET('/music/edit/{id}', 'AdminController@music_edit')->name('admin.music_edit');
 Route::POST('/music/update/{id}', 'AdminController@music_update')->name('admin.music_update');
+
+Route::GET('/book', 'AdminController@book')->name('admin.book');
+Route::GET('/book/create', 'AdminController@book_create')->name('admin.book_create');
+Route::POST('/book/store', 'AdminController@book_store')->name('admin.book_store');
+Route::GET('/book/edit/{id}', 'AdminController@book_edit')->name('admin.book_edit');
+Route::POST('/book/update/{id}', 'AdminController@book_update')->name('admin.book_update');
+
+Route::GET('/documentary', 'AdminController@documentary')->name('admin.documentary');
+Route::GET('/documentary/create', 'AdminController@documentary_create')->name('admin.documentary_create');
+Route::POST('/documentary/store', 'AdminController@documentary_store')->name('admin.documentary_store');
+Route::GET('/documentary/edit/{id}', 'AdminController@documentary_edit')->name('admin.documentary_edit');
+Route::POST('/documentary/update/{id}', 'AdminController@documentary_update')->name('admin.documentary_update');

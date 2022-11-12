@@ -17,7 +17,8 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('img');
-            $table->string('creator');
+            $table->date('tgl_tayang')->nullable();
+            $table->string('creator')->nullable();
             $table->string('price')->nullable();
             $table->string('trailer')->nullable();
             $table->string('link')->nullable();

@@ -7,6 +7,8 @@ use App\Movie;
 use App\MiniSeries;
 use App\Commercial;
 use App\Music;
+use App\Book;
+use App\Documentary;
 use DB,Validator,Str,Session;
 use stdClass;
 
@@ -365,6 +367,187 @@ class AdminController extends Controller
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
                 return redirect()->route('admin.music');
+            }
+        }
+    }
+
+    public function book()
+    {
+        return view('layouts.book')->with('book', Book::all());
+    }
+    
+    public function book_create()
+    {
+        return view('layouts.book_create');
+    }
+    
+    public function book_edit($id)
+    {
+        $data = Book::find($id);
+        return view('layouts.book_edit',compact('data'));
+    }
+
+    public function book_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:book',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/book', $img_new);
+
+            $data = Book::create([
+                'title' => $request->title,
+                'img' => 'img/book/' . $img_new,
+                'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'creator' => $request->creator ? $request->creator : NULL,
+                'artist' => $request->artist ? $request->artist : NULL,
+                'trailer' => $request->trailer ? $request->trailer : NULL,
+                'description' => $request->description ? $request->description : NULL,
+                'slug' => Str::slug($request->title),
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.book');
+            }
+        }
+    }
+
+    public function book_update(Request $request, $id)
+    {
+        $data = Book::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/book', $img_new);
+                $data->img = 'img/book/' . $img_new;
+            }
+
+            $link = new stdClass();
+            $link->spotify = $request->spotify ? $request->spotify : NULL;
+            $link->joox = $request->joox ? $request->joox : NULL;
+            $link->apple = $request->apple ? $request->apple : NULL;
+            $link = array($link);
+
+            $data->title = $request->title;
+            $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
+            $data->artist = $request->artist ? $request->artist : NULL;
+            $data->creator = $request->creator ? $request->creator : NULL;
+            $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->link = json_encode($link);
+            $data->description = $request->description ? $request->description : NULL;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+            
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.book');
+            }
+        }
+    }
+
+    public function documentary()
+    {
+        return view('layouts.documentary')->with('documentary', Documentary::all());
+    }
+    
+    public function documentary_create()
+    {
+        return view('layouts.documentary_create');
+    }
+    
+    public function documentary_edit($id)
+    {
+        $data = Documentary::find($id);
+        return view('layouts.documentary_edit',compact('data'));
+    }
+
+    public function documentary_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:documentary',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/documentary', $img_new);
+
+            $link = new stdClass();
+            $link->spotify = $request->spotify ? $request->spotify : NULL;
+            $link->joox = $request->joox ? $request->joox : NULL;
+            $link->apple = $request->apple ? $request->apple : NULL;
+            $link = array($link);
+
+            $data = Documentary::create([
+                'title' => $request->title,
+                'img' => 'img/documentary/' . $img_new,
+                'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'creator' => $request->creator ? $request->creator : NULL,
+                'artist' => $request->artist ? $request->artist : NULL,
+                'trailer' => $request->trailer ? $request->trailer : NULL,
+                'link' => json_encode($link),
+                'description' => $request->description ? $request->description : NULL,
+                'slug' => Str::slug($request->title),
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.documentary');
+            }
+        }
+    }
+
+    public function documentary_update(Request $request, $id)
+    {
+        $data = Documentary::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/documentary', $img_new);
+                $data->img = 'img/documentary/' . $img_new;
+            }
+
+            $link = new stdClass();
+            $link->spotify = $request->spotify ? $request->spotify : NULL;
+            $link->joox = $request->joox ? $request->joox : NULL;
+            $link->apple = $request->apple ? $request->apple : NULL;
+            $link = array($link);
+
+            $data->title = $request->title;
+            $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
+            $data->artist = $request->artist ? $request->artist : NULL;
+            $data->creator = $request->creator ? $request->creator : NULL;
+            $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->link = json_encode($link);
+            $data->description = $request->description ? $request->description : NULL;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+            
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.documentary');
             }
         }
     }

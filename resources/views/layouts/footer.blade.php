@@ -4,7 +4,7 @@
             <div class="col-md-3">
                 <img src="{{ asset('img/logo.png') }}" alt="" width="100%" class="border-0">
 
-                <ul class="nav justify-content-center">
+                <ul class="nav justify-content-center d-none">
                   <li class="nav-item">
                     <a class="nav-link" href="#">
                       <i class="bi-instagram"></i>
@@ -46,9 +46,6 @@
           <a class="nav-link" href="#">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Our Team</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="#">Contact Us</a>
         </li>
             </ul>
@@ -73,7 +70,7 @@
 <div class="bg-black">
   <div class="container">
     <hr class="m-0">
-    <div class="py-4 text-center text-uppercase">
+    <div class="py-4 text-center fw-bold">
       &copy; Copyright {{ date('Y') }} PT Sinema Digital Indonesia
     </div>
   </div>

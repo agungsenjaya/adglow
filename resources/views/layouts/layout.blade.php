@@ -178,8 +178,8 @@
                   </div>
                 </a>
                 <div class="list-group collapse nav-admin-sub" id="book">
-                  <a href="#" class="list-group-item list-group-item-action">List Book</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Book</a>
+                  <a href="{{ route('admin.book') }}" class="list-group-item list-group-item-action">List Book</a>
+                  <a href="{{ route('admin.book_create') }}" class="list-group-item list-group-item-action">Create Book</a>
                 </div>
               </li>
           <li class="nav-item">
