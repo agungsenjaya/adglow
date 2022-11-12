@@ -193,8 +193,8 @@
                   </div>
                 </a>
                 <div class="list-group collapse nav-admin-sub" id="documentary">
-                  <a href="#" class="list-group-item list-group-item-action">List Doc & Tv Program</a>
-                  <a href="#" class="list-group-item list-group-item-action">Create Doc & Tv Program</a>
+                  <a href="{{ route('admin.documentary') }}" class="list-group-item list-group-item-action">List Doc & Tv Program</a>
+                  <a href="{{ route('admin.documentary_create') }}" class="list-group-item list-group-item-action">Create Doc & Tv Program</a>
                 </div>
               </li>
         </ul>
@@ -206,6 +206,21 @@
           </a>
         </h6>
         <ul class="nav flex-column mb-2 nav-admin">
+        <li class="nav-item">
+                <a class="nav-link justify-content-between d-flex" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#news" aria-expanded="false">
+                  <div>
+                    
+                    News
+                  </div>
+                  <div>
+                    <span class="bi-chevron-down"></span>
+                  </div>
+                </a>
+                <div class="list-group collapse nav-admin-sub" id="news">
+                  <a href="{{ route('admin.news') }}" class="list-group-item list-group-item-action">List News</a>
+                  <a href="{{ route('admin.news_create') }}" class="list-group-item list-group-item-action">Create News</a>
+                </div>
+              </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
             

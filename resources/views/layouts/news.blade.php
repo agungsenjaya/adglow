@@ -4,15 +4,15 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Book</h1>
+  <h1 class="h4">News</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <p class="card-text mb-0">Total Book</p>
-        <h3 class="card-title">{{ counTing(count($book)) }}</h3>
+        <p class="card-text mb-0">Total News</p>
+        <h3 class="card-title">{{ counTing(count($news)) }}</h3>
       </div>
     </div>
   </div>
@@ -26,32 +26,24 @@ $no = 1;
                 <tr>
                   <th>No</th>
                   <th class="col-3">Judul</th>
-                  <th class="col-2">Creator</th>
-                  <th class="col-2">Tgl Tayang</th>
+                  <th class="col-2">Tgl Dibuat</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($book->reverse() as $boo)
+                @foreach($news->reverse() as $new)
                 <tr>
                   <td>{{ counTing($no++) }}</td>
-                  <td class="text-capitalize">{{ $boo->title }}</td>
-                  <td class="text-capitalize">{{ $boo->creator ? $boo->creator : '-' }}</td>
-                  <td>{{ $boo->tgl_tayang ? $boo->tgl_tayang : '-' }}</td>
+                  <td class="text-capitalize">{{ $new->title }}</td>
+                  <td class="text-capitalize">{{ $new->created_at }}</td>
                   <td>
                       <div class="dropdown ">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="book" data-src="{{ $boo->img }}" data-caption="{{ $boo->title }}">Image</a></li>
-                          @if($boo->trailer)
-                          <li><a class="dropdown-item" href="{{ $boo->trailer }}" target="_blank">Trailer</a></li>
-                          @endif
-                          @if($boo->link)
-                          <li><a class="dropdown-item" href="{{ $boo->link }}" target="_blank">Link</a></li>
-                          @endif
-                          <li><a class="dropdown-item" href="{{ route('admin.book_edit', ['id' => $boo -> id]) }}">Edit</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="news" data-src="{{ $new->img }}" data-caption="{{ $new->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="{{ route('admin.news_edit', ['id' => $new -> id]) }}">Edit</a></li>
                         </ul>
                       </div>
                   </td>

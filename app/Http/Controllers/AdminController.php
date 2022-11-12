@@ -8,6 +8,7 @@ use App\MiniSeries;
 use App\Commercial;
 use App\Music;
 use App\Book;
+use App\News;
 use App\Documentary;
 use DB,Validator,Str,Session;
 use stdClass;
@@ -390,7 +391,7 @@ class AdminController extends Controller
     public function book_store(Request $request)
     {
         $valid = Validator::make($request->all(), [
-            'title' => 'required|unique:book',
+            'title' => 'required|unique:books',
             'img' => 'required'
         ]);
         if ($valid->fails()) {
@@ -406,8 +407,6 @@ class AdminController extends Controller
                 'img' => 'img/book/' . $img_new,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'creator' => $request->creator ? $request->creator : NULL,
-                'artist' => $request->artist ? $request->artist : NULL,
-                'trailer' => $request->trailer ? $request->trailer : NULL,
                 'description' => $request->description ? $request->description : NULL,
                 'slug' => Str::slug($request->title),
             ]);
@@ -435,18 +434,9 @@ class AdminController extends Controller
                 $data->img = 'img/book/' . $img_new;
             }
 
-            $link = new stdClass();
-            $link->spotify = $request->spotify ? $request->spotify : NULL;
-            $link->joox = $request->joox ? $request->joox : NULL;
-            $link->apple = $request->apple ? $request->apple : NULL;
-            $link = array($link);
-
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
-            $data->artist = $request->artist ? $request->artist : NULL;
             $data->creator = $request->creator ? $request->creator : NULL;
-            $data->trailer = $request->trailer ? $request->trailer : NULL;
-            $data->link = json_encode($link);
             $data->description = $request->description ? $request->description : NULL;
             $data->slug = Str::slug($request->title);
             $data->save();
@@ -477,7 +467,7 @@ class AdminController extends Controller
     public function documentary_store(Request $request)
     {
         $valid = Validator::make($request->all(), [
-            'title' => 'required|unique:documentary',
+            'title' => 'required|unique:documentaries',
             'img' => 'required'
         ]);
         if ($valid->fails()) {
@@ -488,20 +478,14 @@ class AdminController extends Controller
             $img_new = time().$img->getClientOriginalName();
             $img->move('img/documentary', $img_new);
 
-            $link = new stdClass();
-            $link->spotify = $request->spotify ? $request->spotify : NULL;
-            $link->joox = $request->joox ? $request->joox : NULL;
-            $link->apple = $request->apple ? $request->apple : NULL;
-            $link = array($link);
-
             $data = Documentary::create([
                 'title' => $request->title,
                 'img' => 'img/documentary/' . $img_new,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
-                'creator' => $request->creator ? $request->creator : NULL,
-                'artist' => $request->artist ? $request->artist : NULL,
+                'producer' => $request->producer ? $request->producer : NULL,
+                'director' => $request->director ? $request->director : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
-                'link' => json_encode($link),
+                'link' => $request->link ? $request->link : NULL,
                 'description' => $request->description ? $request->description : NULL,
                 'slug' => Str::slug($request->title),
             ]);
@@ -529,18 +513,12 @@ class AdminController extends Controller
                 $data->img = 'img/documentary/' . $img_new;
             }
 
-            $link = new stdClass();
-            $link->spotify = $request->spotify ? $request->spotify : NULL;
-            $link->joox = $request->joox ? $request->joox : NULL;
-            $link->apple = $request->apple ? $request->apple : NULL;
-            $link = array($link);
-
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
-            $data->artist = $request->artist ? $request->artist : NULL;
-            $data->creator = $request->creator ? $request->creator : NULL;
+            $data->director = $request->director ? $request->director : NULL;
+            $data->producer = $request->producer ? $request->producer : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
-            $data->link = json_encode($link);
+            $data->link = $request->link ? $request->link : NULL;
             $data->description = $request->description ? $request->description : NULL;
             $data->slug = Str::slug($request->title);
             $data->save();
@@ -548,6 +526,115 @@ class AdminController extends Controller
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
                 return redirect()->route('admin.documentary');
+            }
+        }
+    }
+
+    public function news()
+    {
+        return view('layouts.news')->with('news', News::all());
+    }
+    
+    public function news_create()
+    {
+        return view('layouts.news_create');
+    }
+    
+    public function news_edit($id)
+    {
+        $data = News::find($id);
+        return view('layouts.news_edit',compact('data'));
+    }
+
+    public function news_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:news',
+            'img' => 'required'
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $img = $request->img;
+            $img_new = time().$img->getClientOriginalName();
+            $img->move('img/news', $img_new);
+
+            $detail=$request->input('description');
+            $dom = new \DomDocument();
+            $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+            $images = $dom->getElementsByTagName('img');
+            foreach($images as $k => $img){
+                $data = $img->getAttribute('src');
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $data = base64_decode($data);
+                $image_name= "/img/news/" . time().$k.'.png';
+                $path = public_path() . $image_name;
+                file_put_contents($path, $data);
+                $img->removeAttribute('src');
+                $img->setAttribute('src', $image_name);
+            }
+            $detail = $dom->saveHTML();
+
+            $data = News::create([
+                'title' => $request->title,
+                'img' => 'img/news/' . $img_new,
+                'description' => $detail,
+                'slug' => Str::slug($request->title),
+            ]);
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.news');
+            }
+        }
+    }
+
+    public function news_update(Request $request, $id)
+    {
+        $data = News::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            if ($request->hasFile('img')) {
+                $img = $request->img;
+                $img_new = time().$img->getClientOriginalName();
+                $img->move('img/news', $img_new);
+                $data->img = 'img/news/' . $img_new;
+            }
+
+            $detail=$request->input('content');
+            $dom = new \DomDocument();
+            @$dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+            $images = $dom->getElementsByTagName('img');
+            foreach($images as $k => $imgg){
+                $datas = $imgg->getAttribute('src');
+                $ext = pathinfo($datas, PATHINFO_EXTENSION);
+                if ($ext != "png") {
+                    list($type, $datas) = explode(';', $datas);
+                    list(, $datas)      = explode(',', $datas);
+                    $datas = base64_decode($datas);
+                    $image_name= "/img/news/" . time().$k.'.png';
+                    $path = public_path() . $image_name;
+                    file_put_contents($path, $datas);
+                    $imgg->removeAttribute('src');
+                    $imgg->setAttribute('src', $image_name);
+                }
+            }
+            $detail = $dom->saveHTML();
+
+            $data->title = $request->title;
+            $data->description = $detail;
+            $data->slug = Str::slug($request->judul);
+            $data->save();
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.news');
             }
         }
     }

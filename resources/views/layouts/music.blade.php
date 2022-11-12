@@ -28,12 +28,15 @@ $no = 1;
                   <th class="col-3">Judul</th>
                   <th class="col-2">Artist</th>
                   <th class="col-2">Creator</th>
-                  <th class="col-2">Tgl Tayang</th>
+                  <th class="col-2">Tgl Rilis</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($music->reverse() as $musi)
+                @php
+                $link = json_decode($musi->link);
+                @endphp
                 <tr>
                   <td>{{ counTing($no++) }}</td>
                   <td class="text-capitalize">{{ $musi->title }}</td>
@@ -51,7 +54,15 @@ $no = 1;
                           <li><a class="dropdown-item" href="{{ $musi->trailer }}" target="_blank">Trailer</a></li>
                           @endif
                           @if($musi->link)
-                          <li><a class="dropdown-item" href="{{ $musi->link }}" target="_blank">Link</a></li>
+                          @if($link[0]->spotify)
+                          <li><a class="dropdown-item" href="{{ $link[0]->spotify }}" target="_blank">Spotify</a></li>
+                          @endif
+                          @if($link[0]->joox)
+                          <li><a class="dropdown-item" href="{{ $link[0]->joox }}" target="_blank">Joox</a></li>
+                          @endif
+                          @if($link[0]->apple)
+                          <li><a class="dropdown-item" href="{{ $link[0]->apple }}" target="_blank">Apple Music</a></li>
+                          @endif
                           @endif
                           <li><a class="dropdown-item" href="{{ route('admin.music_edit', ['id' => $musi -> id]) }}">Edit</a></li>
                         </ul>

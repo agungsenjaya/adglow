@@ -4,15 +4,15 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Music</h1>
+  <h1 class="h4">Doc & Tv Program</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <p class="card-text mb-0">Total Music</p>
-        <h3 class="card-title">{{ counTing(count($music)) }}</h3>
+        <p class="card-text mb-0">Total Doc & Tv Program</p>
+        <h3 class="card-title">{{ counTing(count($documentary)) }}</h3>
       </div>
     </div>
   </div>
@@ -26,34 +26,34 @@ $no = 1;
                 <tr>
                   <th>No</th>
                   <th class="col-3">Judul</th>
-                  <th class="col-2">Artist</th>
-                  <th class="col-2">Creator</th>
+                  <th class="col-2">Director</th>
+                  <th class="col-2">Producer</th>
                   <th class="col-2">Tgl Tayang</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($music->reverse() as $musi)
+                @foreach($documentary->reverse() as $doc)
                 <tr>
                   <td>{{ counTing($no++) }}</td>
-                  <td class="text-capitalize">{{ $musi->title }}</td>
-                  <td class="text-capitalize">{{ $musi->artist ? $musi->artist : '-' }}</td>
-                  <td class="text-capitalize">{{ $musi->creator ? $musi->creator : '-' }}</td>
-                  <td>{{ $musi->tgl_tayang ? $musi->tgl_tayang : '-' }}</td>
+                  <td class="text-capitalize">{{ $doc->title }}</td>
+                  <td class="text-capitalize">{{ $doc->director ? $doc->director : '-' }}</td>
+                  <td class="text-capitalize">{{ $doc->producer ? $doc->producer : '-' }}</td>
+                  <td>{{ $doc->tgl_tayang ? $doc->tgl_tayang : '-' }}</td>
                   <td>
                       <div class="dropdown ">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ $musi->img }}" data-caption="{{ $musi->title }}">Image</a></li>
-                          @if($musi->trailer)
-                          <li><a class="dropdown-item" href="{{ $musi->trailer }}" target="_blank">Trailer</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ $doc->img }}" data-caption="{{ $doc->title }}">Image</a></li>
+                          @if($doc->trailer)
+                          <li><a class="dropdown-item" href="{{ $doc->trailer }}" target="_blank">Trailer</a></li>
                           @endif
-                          @if($musi->link)
-                          <li><a class="dropdown-item" href="{{ $musi->link }}" target="_blank">Link</a></li>
+                          @if($doc->link)
+                          <li><a class="dropdown-item" href="{{ $doc->link }}" target="_blank">Link</a></li>
                           @endif
-                          <li><a class="dropdown-item" href="{{ route('admin.music_edit', ['id' => $musi -> id]) }}">Edit</a></li>
+                          <li><a class="dropdown-item" href="{{ route('admin.documentary_edit', ['id' => $doc -> id]) }}">Edit</a></li>
                         </ul>
                       </div>
                   </td>

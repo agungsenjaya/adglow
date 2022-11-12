@@ -61,3 +61,9 @@ Route::GET('/documentary/create', 'AdminController@documentary_create')->name('a
 Route::POST('/documentary/store', 'AdminController@documentary_store')->name('admin.documentary_store');
 Route::GET('/documentary/edit/{id}', 'AdminController@documentary_edit')->name('admin.documentary_edit');
 Route::POST('/documentary/update/{id}', 'AdminController@documentary_update')->name('admin.documentary_update');
+
+Route::GET('/news', 'AdminController@news')->name('admin.news');
+Route::GET('/news/create', 'AdminController@news_create')->name('admin.news_create');
+Route::POST('/news/store', 'AdminController@news_store')->name('admin.news_store');
+Route::GET('/news/edit/{id}', 'AdminController@news_edit')->name('admin.news_edit');
+Route::POST('/news/update/{id}', 'AdminController@news_update')->name('admin.news_update');
