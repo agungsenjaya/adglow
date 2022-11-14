@@ -69,8 +69,8 @@
 </footer>
 <div class="bg-black">
   <div class="container">
-    <hr class="m-0">
-    <div class="py-4 text-center fw-bold">
+    <hr class="m-0 bg-white">
+    <div class="py-4 text-center text-white">
       &copy; Copyright {{ date('Y') }} PT Sinema Digital Indonesia
     </div>
   </div>

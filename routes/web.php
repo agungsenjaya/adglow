@@ -18,13 +18,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::GET('/','ClientController@home')->name('index');
+Route::GET('/movies','ClientController@movies')->name('movies');
+Route::GET('/movies/view/{slug}','ClientController@movies_view')->name('movies_view');
 
 Auth::routes([
     'register' => false,
     'reset' => false,
 ]);
 
-Route::GET('/home', 'AdminController@home')->name('home');
+
+Route::GROUP(['prefix' => 'dashboard',  'middleware' => ['auth:web']], function(){
+
+Route::GET('/', 'AdminController@home')->name('home');
 
 Route::GET('/movies', 'AdminController@movies')->name('admin.movies');
 Route::GET('/movies/create', 'AdminController@movies_create')->name('admin.movies_create');
@@ -67,3 +72,5 @@ Route::GET('/news/create', 'AdminController@news_create')->name('admin.news_crea
 Route::POST('/news/store', 'AdminController@news_store')->name('admin.news_store');
 Route::GET('/news/edit/{id}', 'AdminController@news_edit')->name('admin.news_edit');
 Route::POST('/news/update/{id}', 'AdminController@news_update')->name('admin.news_update');
+
+});

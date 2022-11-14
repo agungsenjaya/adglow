@@ -20,8 +20,8 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
-              <label class="form-label">Images</label>
-              <input type="file" class="form-control" name="img">
+              <label class="form-label">Images Clip</label>
+              <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
             <div class="row mb-3">
@@ -56,9 +56,10 @@ $no = 1;
           </div>
           <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
-              <textarea name="description" id="summernote">
-                {{ $data->description ? $data->description : NULL }}
-              </textarea>
+              <div id="editor">
+                {!! $data->description ? $data->description : NULL !!}
+              </div>
+              <input type="hidden" name="description" id="editor_name" value="{{ $data->description ? $data->description : NULL }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -67,21 +68,16 @@ $no = 1;
       </section>
 @endsection
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @endsection
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-  $('#summernote').summernote({
-    tabsize: 2,
-    height: 400,
-    toolbar: [
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['color', ['color']],
-          ['insert', ['link', 'video']],
-        ],
-        fontNames: ['Kanit']
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+  quill.on('text-change', function(delta, oldDelta, source) {
+      document.getElementById("editor_name").value = quill.root.innerHTML;
   });
 </script>
 @endsection

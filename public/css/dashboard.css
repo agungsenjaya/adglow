@@ -2,6 +2,7 @@
 body {
     font-size: .875rem;
     font-family: 'Kanit' !important;
+    background-color: #fff;
   }
   
   .feather {
@@ -116,6 +117,16 @@ body {
     opacity: .5;
   }
 
-  label {
-    font-weight: 600;
+  .ql-container {
+    font-family: 'Kanit' !important;
+    height: 60vh !important;
+    font-size: .875rem !important;
   }
+
+  .to-center {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+}

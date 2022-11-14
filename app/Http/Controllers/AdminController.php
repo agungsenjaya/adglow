@@ -45,19 +45,19 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:movies',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
+            $img = $request->img_clip;
             $img_new = time().$img->getClientOriginalName();
             $img->move('img/movies', $img_new);
 
             $data = Movie::create([
                 'title' => $request->title,
-                'img' => 'img/movies/' . $img_new,
+                'img_clip' => 'img/movies/' . $img_new,
                 'tgl_tayang' => $request->tgl_tayang,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
@@ -86,10 +86,10 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
             if ($request->hasFile('img')) {
-                $img = $request->img;
+                $img = $request->img_clip;
                 $img_new = time().$img->getClientOriginalName();
                 $img->move('img/movies', $img_new);
-                $data->img = 'img/movies/' . $img_new;
+                $data->img_clip = 'img/movies/' . $img_new;
             }
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang;

@@ -31,7 +31,7 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
@@ -40,7 +40,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
@@ -49,7 +49,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
@@ -58,7 +58,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
@@ -67,7 +67,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
@@ -76,7 +76,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="card bg-black">
-                    <img src="https://dummyimage.com/800x600" alt="" width="100%" class="rounded-4">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
                     <div class="card-body">
                         <div class="badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
