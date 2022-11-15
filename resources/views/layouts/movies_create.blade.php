@@ -64,7 +64,7 @@ $no = 1;
           </div>
           <div class="mb-3">
               <label class="form-label">Images Highlight</label>
-              <input type="file" class="form-control" name="img_highlight" required>
+              <input type="file" class="form-control" name="img_highlight[]" required>
 
               <div class="row mt-3">
                 <div class="col-md-2">
