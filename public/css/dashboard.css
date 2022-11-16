@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap');
 body {
     font-size: .875rem;
-    font-family: 'Kanit' !important;
+    font-family: 'Open Sans' !important;
     background-color: #fff;
   }
   
@@ -118,7 +117,7 @@ body {
   }
 
   .ql-container {
-    font-family: 'Kanit' !important;
+    font-family: 'Open Sans' !important;
     height: 60vh !important;
     font-size: .875rem !important;
   }

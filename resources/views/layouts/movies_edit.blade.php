@@ -20,6 +20,10 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
+              <label class="form-label">Images Cover</label>
+              <input type="file" class="form-control" name="img_cover">
+            </div>
+            <div class="col">
               <label class="form-label">Images Clip</label>
               <input type="file" class="form-control" name="img_clip">
             </div>
@@ -31,7 +35,7 @@ $no = 1;
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
-              <input class="form-control" type="time" name="duration" step="1" value="{{ $data->duration ? $data->duration : NULL }}">
+              <input class="form-control" type="time" name="duration" value="{{ $data->duration ? $data->duration : NULL }}">
             </div>
             </div>
             <div class="row mb-3">
@@ -44,6 +48,10 @@ $no = 1;
               <input type="text" class="form-control" name="director" value="{{ $data->director }}" required>
             </div>
           </div>
+          <div class="mb-3">
+              <label class="form-label">Artist (Optional)</label>
+              <input type="text" class="form-control" name="artist" value="{{ $data->artist ? $data->artist : NULL }}">
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Trailer (Optional)</label>
@@ -53,6 +61,11 @@ $no = 1;
               <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" value="{{ $data->link ? $data->link : NULL }}" name="link">
             </div>
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Images Highlight</label>
+              <input type="file" class="form-control" name="img_highlight[]" multiple="true" id="img_highlight" onchange="previewImage()">
+              <div class="row" id="image_preview"></div>
           </div>
           <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
@@ -79,5 +92,39 @@ $no = 1;
   quill.on('text-change', function(delta, oldDelta, source) {
       document.getElementById("editor_name").value = quill.root.innerHTML;
   });
+
+  let images = [];
+  function previewImage() 
+  {
+    let total_file = document.getElementById("img_highlight").files.length;
+    for(let nim = 0; nim < total_file ; nim++){
+      $('#image_preview').append(`<div class="col-md-2 mt-3 image-${nim}">
+        <div class="position-relative">
+          <img src="${URL.createObjectURL(event.target.files[nim])}" alt="" width="100%" class="rounded">
+          <div class="to-center text-center d-none">
+            <a href="javascript:void(0)" onclick="removeImage(${nim})">
+              <i class="bi-x-circle-fill h3"></i>
+            </a>
+          </div>
+        </div>
+      </div>`);
+      let object = {};
+      object.id = nim;
+      object.url = URL.createObjectURL(event.target.files[nim]);
+      images.push(object);
+    }
+    console.log($('input[name="img_highlight[]"]')[0].files);
+  }
+
+  function removeImage(e)
+  {
+    var a = $.map(images, function(value, index) {
+      if(value.id != e){
+        images = [];
+        images.push(value);
+      }
+    });
+    $(`.image-${e}`).remove();
+  }
 </script>
 @endsection

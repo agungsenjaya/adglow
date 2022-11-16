@@ -1,42 +1,48 @@
 @extends('layouts.index')
 @section('content')
 <div class="position-relative">
-    <img src="https://dummyimage.com/1349x500" alt="" width="100%">
+    <img src="{{ url('').'/'.$data->img_cover }}" alt="" width="100%">
     <div class="to-bottom">
         <div class="container text-center mb-5">
-            <a href="#" class="btn btn-light btn-lg">
+            <a href="#" class="btn btn-light">
                 <i class="bi-play-fill me-2"></i>Watch Trailer
             </a>
         </div>
     </div>
 </div>
 <section class="py-3 bg-black">
-    <div class="container text-white text-center lead">
-        Tanggal tayang {{ $data->tgl_tayang }}
+    <div class="container text-white text-center">
+        Akan segera tayang pada tanggal tayang {{ $data->tgl_tayang }}
     </div>
 </section>
 <section class="space-m">
     <div class="container">
-        <div class="row mb-4 justify-content-center">
+        <div class="row mb-5 justify-content-center">
             <div class="col-md-7">
-                <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                <div class="position-relative">
+                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <div class="to-center text-center">
+                        <a href="javascript:void(0)" class="btn-icon bg-white text-black">
+                            <i class="bi-play-fill"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center mb-4">
+        <div class="row justify-content-center mb-5">
             <div class="col-md-4">
-                <img src="{{ url('') .'/'. $data->img }}" alt="" width="100%" class="rounded">
+                <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
                 @if($data->tgl_tayang)
                 <p>{{ $data->tg_tayang }}</p>
                 @endif
             </div>
             <div class="col-md-5">
             <div class="px-4">
-                <h3 class="text-capitalize">{{ $data->title }}</h3>
-                <!-- {!! $data->description !!} -->
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dolor fugiat ipsum sint? Quia, maxime dolorum nulla numquam non facere natus omnis deserunt ex pariatur reiciendis velit consectetur illum minus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dolor fugiat ipsum sint? Quia, maxime dolorum nulla numquam non facere natus omnis deserunt ex pariatur reiciendis velit consectetur illum minus!Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dolor fugiat ipsum sint? Quia, maxime dolorum nulla numquam non facere natus omnis deserunt ex pariatur reiciendis velit consectetur illum minus!</p>
+                <h3 class="text-capitalize fw-semibold mb-3 text-black">{{ $data->title }}</h3>
+                {!! $data->description !!}
                 <div class="py-3">
-                    <p class="mb-0">Directed By</p>
-                    <p class="mb-0 text-capitalize">
+                    <p class="text-black">Directed By</p>
+                    <p class="text-capitalize">
                         @if($data->director)
                         {{ $data->director }}
                         @else
@@ -45,8 +51,8 @@
                     </p>
                 </div>
                 <div class="pb-3">
-                    <p class="mb-0">Produced By</p>
-                    <p class="mb-0 text-capitalize">
+                    <p class="text-black">Produced By</p>
+                    <p class="text-capitalize">
                         @if($data->producer)
                         {{ $data->producer }}
                         @else
@@ -55,8 +61,8 @@
                     </p>
                 </div>
                 <div class="">
-                    <p class="mb-0">Artist</p>
-                    <p class="mb-0 text-capitalize">
+                    <p class="text-black">Artist</p>
+                    <p class="text-capitalize">
                         @if($data->artist)
                         {{ $data->artist }}
                         @else
@@ -78,31 +84,21 @@
             </div>
         </div>
 
-        <div class="mb-4">
-            <h3 class="mb-3">Highlight</h3>
-
+        <div class="">
+            <!-- <h3 class="mb-3 text-black">Highlight</h3> -->
             <div class="swiper swiper-1">
   <div class="swiper-wrapper">
+    @php
+    $hight = json_decode($data->img_highlight);
+    @endphp
+    @foreach($hight as $hi)
     <div class="swiper-slide">
-        <a href="javascript:void(0)" data-fancybox="{{ $data->title }}" data-src="https://dummyimage.com/1349x600" data-caption="{{ $data->title }}">
-            <img src="https://dummyimage.com/1349x600" alt="" width="100%" class="rounded">
+        <a href="javascript:void(0)" data-fancybox="{{ $data->title }}" data-src="{{ url('').'/'.$hi }}" data-caption="{{ ucwords($data->title) }}">
+            <img src="{{ url('').'/'.$hi }}" alt="" width="100%" class="rounded">
         </a>
     </div>
-    <div class="swiper-slide">
-        <a href="javascript:void(0)" data-fancybox="{{ $data->title }}" data-src="https://dummyimage.com/1349x600" data-caption="{{ $data->title }}">
-            <img src="https://dummyimage.com/1349x600" alt="" width="100%" class="rounded">
-        </a>
-    </div>
-    <div class="swiper-slide">
-        <a href="javascript:void(0)" data-fancybox="{{ $data->title }}" data-src="https://dummyimage.com/1349x600" data-caption="{{ $data->title }}">
-            <img src="https://dummyimage.com/1349x600" alt="" width="100%" class="rounded">
-        </a>
-    </div>
-    <div class="swiper-slide">
-        <a href="javascript:void(0)" data-fancybox="{{ $data->title }}" data-src="https://dummyimage.com/1349x600" data-caption="{{ $data->title }}">
-            <img src="https://dummyimage.com/1349x600" alt="" width="100%" class="rounded">
-        </a>
-    </div>
+    @endforeach
+    
   </div>
   <div class="swiper-button-next next">
     <div class="btn-icon bg-light text-center text-dark">
@@ -120,16 +116,16 @@
 </section>
 <section class="space-m">
     <div class="container">
-    <h3 class="mb-3">Recomended Movies</h3>
+    <h3 class="mb-3 text-black">Recomended Movies</h3>
     <div class="swiper swiper-2">
         <div class="swiper-wrapper">
             @foreach($movies->reverse()->take(2) as $move)
             <div class="swiper-slide">
                 <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
                 <div class="card border-0">
-                    <img src="{{ url('').'/'.$data->img }}" alt="" width="100%" class="rounded-4">
+                    <img src="{{ url('').'/'.$data->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
+                        <h5 class="my-2 text-capitalize text-black">{{ $move->title }}</h5>
                     </div>
                 </div>
                 </a>
@@ -143,10 +139,13 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/swiper.css') }}"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+<link rel="stylesheet" href="http://vjs.zencdn.net/4.1.0/video-js.css">
 @endsection
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<script src="http://vjs.zencdn.net/4.1.0/video.js"></script>
+<script src="https://rawgit.com/eXon/videojs-youtube/fffc6be504e6b791c1eef2076b97c43298753be6/src/media.youtube.js"></script>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
 <script>
     const swiper1 = new Swiper('.swiper-1', {

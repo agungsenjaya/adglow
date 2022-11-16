@@ -55,9 +55,13 @@ class AdminController extends Controller
             $img_clip = $request->img_clip;
             $img_clip_new = time().$img_clip->getClientOriginalName();
             $img_clip->move('img/movies', $img_clip_new);
+            
+            $img_cover = $request->img_cover;
+            $img_cover_new = time().$img_cover->getClientOriginalName();
+            $img_cover->move('img/movies', $img_cover_new);
 
             $new_highlight = [];
-            foreach ($img_highlight as $img_light) {
+            foreach ($request->img_highlight as $img_light) {
                 $a = $img_light;
                 $b = time().$a->getClientOriginalName();
                 $a->move('img/movies', $b);
@@ -67,9 +71,9 @@ class AdminController extends Controller
 
             $data = Movie::create([
                 'title' => $request->title,
-                'img_clip' => 'img/movies/' . $img_new,
-                'img_highlight' => count($new_highlight) ? $new_highlight : NULL,
-                'img_highlight' => count($new_highlight) ? $new_highlight : NULL,
+                'img_clip' => 'img/movies/' . $img_clip_new,
+                'img_cover' => 'img/movies/' . $img_cover_new,
+                'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
@@ -97,12 +101,32 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img_clip;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/movies', $img_new);
-                $data->img_clip = 'img/movies/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/movies', $img_clip_new);
+                $data->img_clip = 'img/movies/' . $img_clip_new;
             }
+            
+            if ($request->hasFile('img_cover')) {
+                $img_cover = $request->img_cover;
+                $img_cover_new = time().$img_cover->getClientOriginalName();
+                $img_cover->move('img/movies', $img_cover_new);
+                $data->img_cover = 'img/movies/' . $img_cover_new;
+            }
+            
+            if ($request->hasFile('img_highlight')) {
+                $new_highlight = [];
+                foreach ($request->img_highlight as $img_light) {
+                    $a = $img_light;
+                    $b = time().$a->getClientOriginalName();
+                    $a->move('img/movies', $b);
+                    $c = 'img/movies/' . $b;
+                    array_push($new_highlight,$c);
+                }
+                $data->img_highlight = json_encode($new_highlight);
+            }
+
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang;
             $data->producer = $request->producer;
@@ -117,7 +141,7 @@ class AdminController extends Controller
             
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
-                return redirect()->route('admin.miniseries');
+                return redirect()->route('admin.movies');
             }
         }
     }

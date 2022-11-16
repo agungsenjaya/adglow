@@ -67,7 +67,7 @@ $no = 1;
           ['color', ['color']],
           ['insert', ['link', 'video']],
         ],
-        fontNames: ['Kanit']
+        fontNames: ['Open Sans']
   });
 </script>
 @endsection

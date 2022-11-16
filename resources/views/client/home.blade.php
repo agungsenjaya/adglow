@@ -4,16 +4,16 @@
 <div class="swiper swiper-1 position-relative">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-        <img src="https://dummyimage.com/1349x550" alt="" width="100%">
+        <img src="https://dummyimage.com/1349x600" alt="" width="100%">
     </div>
     <div class="swiper-slide">
-        <img src="https://dummyimage.com/1349x550" alt="" width="100%">
+        <img src="https://dummyimage.com/1349x600" alt="" width="100%">
     </div>
     <div class="swiper-slide">
-        <img src="https://dummyimage.com/1349x550" alt="" width="100%">
+        <img src="https://dummyimage.com/1349x600" alt="" width="100%">
     </div>
     <div class="swiper-slide">
-        <img src="https://dummyimage.com/1349x550" alt="" width="100%">
+        <img src="https://dummyimage.com/1349x600" alt="" width="100%">
     </div>
   </div>
   <div class="to-top z-index-1">
@@ -25,60 +25,60 @@
 <section class="space-m">
     <div class="container">
         <div class="d-flex">
-            <h4 class="er mb-4 me-3">Upcomming</h4>
+            <h3 class="mb-4 me-3">Upcomming</h3>
         </div>
         <div class="swiper swiper-2">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="card bg-black">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded-4">
+                <div class="card bg-transparent">
+                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="badge bg-primary text-uppercase text-white">Movies</div>
+                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
                         <h5 class="my-2">Jangan Sendirian</h5>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 <style>
     body {
-        background: #000;
+        background-color: #000 !important;
         color: #fff;
     }
 </style>

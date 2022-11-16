@@ -82,7 +82,7 @@ $link = json_decode($data->link);
           ['color', ['color']],
           ['insert', ['link', 'video']],
         ],
-        fontNames: ['Kanit']
+        fontNames: ['Open Sans']
   });
 </script>
 @endsection

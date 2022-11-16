@@ -48,13 +48,14 @@ $no = 1;
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="movies" data-src="{{ $move->img }}" data-caption="{{ $move->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="movies" data-src="{{ url('').'/'.$move->img_clip }}" data-caption="{{ ucwords($move->title) }}">Image</a></li>
                           @if($move->trailer)
                           <li><a class="dropdown-item" href="{{ $move->trailer }}" target="_blank">Trailer</a></li>
                           @endif
                           @if($move->link)
                           <li><a class="dropdown-item" href="{{ $move->link }}" target="_blank">Link</a></li>
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('movies_view',['slug' => $move -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.movies_edit', ['id' => $move -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

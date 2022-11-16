@@ -35,7 +35,7 @@ $no = 1;
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
-              <input class="form-control" type="time" name="duration" step="1">
+              <input class="form-control" type="time" name="duration">
             </div>
             </div>
             <div class="row mb-3">
@@ -64,21 +64,8 @@ $no = 1;
           </div>
           <div class="mb-3">
               <label class="form-label">Images Highlight</label>
-              <input type="file" class="form-control" name="img_highlight[]" required>
-
-              <div class="row mt-3">
-                <div class="col-md-2">
-                  <div class="position-relative">
-                    <img src="https://dummyimage.com/300" alt="" width="100%" class="rounded">
-                    <div class="to-center text-center">
-                      <a href="javascript:void(0)">
-                        <i class="bi-x-circle-fill h3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              <input type="file" class="form-control" name="img_highlight[]" multiple="true" id="img_highlight" onchange="previewImage()" required>
+              <div class="row" id="image_preview"></div>
           </div>
           <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
@@ -96,12 +83,47 @@ $no = 1;
 @endsection
 @section('js')
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  var quill = new Quill('#editor', {
+  let quill = new Quill('#editor', {
     theme: 'snow'
   });
   quill.on('text-change', function(delta, oldDelta, source) {
       document.getElementById("editor_name").value = quill.root.innerHTML;
   });
+
+  let images = [];
+  function previewImage() 
+  {
+    let total_file = document.getElementById("img_highlight").files.length;
+    for(let nim = 0; nim < total_file ; nim++){
+      $('#image_preview').append(`<div class="col-md-2 mt-3 image-${nim}">
+        <div class="position-relative">
+          <img src="${URL.createObjectURL(event.target.files[nim])}" alt="" width="100%" class="rounded">
+          <div class="to-center text-center d-none">
+            <a href="javascript:void(0)" onclick="removeImage(${nim})">
+              <i class="bi-x-circle-fill h3"></i>
+            </a>
+          </div>
+        </div>
+      </div>`);
+      let object = {};
+      object.id = nim;
+      object.url = URL.createObjectURL(event.target.files[nim]);
+      images.push(object);
+    }
+    console.log($('input[name="img_highlight[]"]')[0].files);
+  }
+
+  function removeImage(e)
+  {
+    var a = $.map(images, function(value, index) {
+      if(value.id != e){
+        images = [];
+        images.push(value);
+      }
+    });
+    $(`.image-${e}`).remove();
+  }
 </script>
 @endsection
