@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::GET('/','ClientController@home')->name('index');
 Route::GET('/movies','ClientController@movies')->name('movies');
 Route::GET('/movies/view/{slug}','ClientController@movies_view')->name('movies_view');
+Route::GET('/miniseries','ClientController@miniseries')->name('miniseries');
+Route::GET('/miniseries/view/{slug}','ClientController@miniseries_view')->name('miniseries_view');
 
 Auth::routes([
     'register' => false,

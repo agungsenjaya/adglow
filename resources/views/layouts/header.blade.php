@@ -16,7 +16,7 @@
           <a class="nav-link" href="{{ route('movies') }}">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Miniseries</a>
+          <a class="nav-link" href="{{ route('miniseries') }}">Miniseries</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Tv Commercials</a>

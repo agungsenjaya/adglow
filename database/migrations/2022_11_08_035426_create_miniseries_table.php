@@ -16,10 +16,9 @@ class CreateMiniSeriesTable extends Migration
         Schema::create('miniseries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('img_cover');
             $table->string('img_clip');
             $table->json('img_highlight')->nullable();
-            $table->date('tgl_tayang');
+            $table->date('tgl_tayang')->nullable();
             $table->string('producer');
             $table->string('director');
             $table->string('artist')->nullable();
