@@ -2,8 +2,11 @@
 @section('content')
 <section class="space-xl bg-black text-white">
     <div class="container">
-        <h3 class="mb-0">Explore Our Movies</h3>
+        <h3 class="mb-0 fw-bold">Explore Our Movies</h3>
         <p class="mb-0">Adglow pictures movie list</p>
+        <div class="py-3">
+          <div class="grad-line"></div>
+        </div>
     </div>
 </section>
 <section class="space-m">

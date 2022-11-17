@@ -18,7 +18,7 @@
 <section class="space-m">
     <div class="container">
         <div class="row mb-5 justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="position-relative">
                     <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
                     <div class="to-center text-center">
@@ -29,16 +29,13 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-4">
-                <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
-                @if($data->tgl_tayang)
-                <p>{{ $data->tg_tayang }}</p>
-                @endif
-            </div>
+        <div class="row mb-5">
             <div class="col-md-5">
+                <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
+            </div>
+            <div class="col-md-5 align-self-center">
             <div class="px-4">
-                <h3 class="text-capitalize fw-semibold mb-3 text-black">{{ $data->title }}</h3>
+                <h3 class="text-capitalize fw-bold mb-3 text-black">{{ $data->title }}</h3>
                 {!! $data->description !!}
                 <div class="py-3">
                     <p class="text-black">Directed By</p>
@@ -116,7 +113,7 @@
 </section>
 <section class="space-m">
     <div class="container">
-    <h3 class="mb-3 text-black">Recomended Movies</h3>
+    <h3 class="mb-3 text-black fw-bold">Recomended Movies</h3>
     <div class="swiper swiper-2">
         <div class="swiper-wrapper">
             @foreach($movies->reverse()->take(2) as $move)

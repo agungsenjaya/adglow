@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Movies</h1>
+  <h1 class="h4 fw-bold">Movies</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">

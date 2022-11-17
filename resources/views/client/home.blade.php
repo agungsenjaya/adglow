@@ -25,7 +25,7 @@
 <section class="space-m">
     <div class="container">
         <div class="d-flex">
-            <h3 class="mb-4 me-3">Upcomming</h3>
+            <h3 class="mb-4 me-3">Movies</h3>
         </div>
         <div class="swiper swiper-2">
         <div class="swiper-wrapper">
