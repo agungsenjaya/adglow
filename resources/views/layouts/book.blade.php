@@ -51,6 +51,7 @@ $no = 1;
                           @if($boo->link)
                           <li><a class="dropdown-item" href="{{ $boo->link }}" target="_blank">Link</a></li>
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('book_view',['slug' => $boo -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.book_edit', ['id' => $boo -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

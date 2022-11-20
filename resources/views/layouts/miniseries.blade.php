@@ -53,6 +53,7 @@ $no = 1;
                           @if($mini->link)
                           <li><a class="dropdown-item" href="{{ $mini->link }}" target="_blank">Link</a></li>
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('miniseries_view',['slug' => $mini -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.miniseries_edit', ['id' => $mini -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

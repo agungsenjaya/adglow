@@ -51,6 +51,7 @@ $no = 1;
                           @if($comme->link)
                           <li><a class="dropdown-item" href="{{ $comme->link }}" target="_blank">Link</a></li>
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('commercial_view',['slug' => $comme -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.commercial_edit', ['id' => $comme -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

@@ -29,60 +29,18 @@
         </div>
         <div class="swiper swiper-2">
         <div class="swiper-wrapper">
+            @foreach($movies as $move)
             <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
+                <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
+                <div class="card border-0 bg-transparent text-white">
+                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
+                        <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
                     </div>
                 </div>
+                </a>
             </div>
-            <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
-                    <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
-                    <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
-                    <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
-                    <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="card bg-transparent">
-                    <img src="https://dummyimage.com/400x600" alt="" width="100%" class="rounded">
-                    <div class="card-body">
-                        <div class="d-none badge bg-primary text-uppercase text-white">Movies</div>
-                        <h5 class="my-2">Jangan Sendirian</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         </div>
     </div>

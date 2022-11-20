@@ -20,8 +20,24 @@ use Illuminate\Support\Facades\Route;
 Route::GET('/','ClientController@home')->name('index');
 Route::GET('/movies','ClientController@movies')->name('movies');
 Route::GET('/movies/view/{slug}','ClientController@movies_view')->name('movies_view');
+
 Route::GET('/miniseries','ClientController@miniseries')->name('miniseries');
 Route::GET('/miniseries/view/{slug}','ClientController@miniseries_view')->name('miniseries_view');
+
+Route::GET('/commercial','ClientController@commercial')->name('commercial');
+Route::GET('/commercial/view/{slug}','ClientController@commercial_view')->name('commercial_view');
+
+Route::GET('/music','ClientController@music')->name('music');
+Route::GET('/music/view/{slug}','ClientController@music_view')->name('music_view');
+
+Route::GET('/book','ClientController@book')->name('book');
+Route::GET('/book/view/{slug}','ClientController@book_view')->name('book_view');
+
+Route::GET('/documentary','ClientController@documentary')->name('documentary');
+Route::GET('/documentary/view/{slug}','ClientController@documentary_view')->name('documentary_view');
+
+Route::GET('/news','ClientController@news')->name('news');
+Route::GET('/news/view/{slug}','ClientController@news_view')->name('news_view');
 
 Auth::routes([
     'register' => false,

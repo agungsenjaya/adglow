@@ -14,7 +14,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach($miniseries->reverse() as $mini)
         <div class="col">
-          <a href="{{ route('movies_view',['slug' => $mini -> slug]) }}" class="card border-0 text-dark">
+          <a href="{{ route('miniseries_view',['slug' => $mini -> slug]) }}" class="card border-0 text-dark">
             <img src="{{ url('').'/'.$mini->img_clip }}" class="rounded" alt="{{ $mini->slug }}">
             <div class="card-body">
               <h5 class="card-title text-capitalize text-black">{{ $mini->title }}</h5>

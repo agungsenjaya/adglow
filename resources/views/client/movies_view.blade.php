@@ -1,34 +1,7 @@
 @extends('layouts.index')
 @section('content')
-<div class="position-relative">
-    <img src="https://dummyimage.com/1349x600" alt="" width="100%">
-    <div class="to-bottom">
-        <div class="container text-center mb-5">
-            <a href="#" class="btn btn-light">
-                <i class="bi-play-fill me-2"></i>Watch Trailer
-            </a>
-        </div>
-    </div>
-</div>
-<section class="py-3 bg-black">
-    <div class="container text-white text-center">
-        Akan segera tayang pada tanggal tayang {{ $data->tgl_tayang }}
-    </div>
-</section>
 <section class="space-m">
     <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-md-8">
-                <div class="position-relative">
-                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
-                    <div class="to-center text-center">
-                        <a href="javascript:void(0)" class="btn-icon bg-white text-black">
-                            <i class="bi-play-fill"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row mb-5">
             <div class="col-md-5">
                 <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
@@ -81,6 +54,19 @@
             </div>
         </div>
 
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-8">
+                <div class="position-relative">
+                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <div class="to-center text-center">
+                        <a href="javascript:void(0)" class="btn-icon bg-white text-black">
+                            <i class="bi-play-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="">
             <!-- <h3 class="mb-3 text-black">Highlight</h3> -->
             <div class="swiper swiper-1">
@@ -116,11 +102,11 @@
     <h3 class="mb-3 text-black fw-bold">Recomended Movies</h3>
     <div class="swiper swiper-2">
         <div class="swiper-wrapper">
-            @foreach($movies->reverse()->take(2) as $move)
+            @foreach($movies->reverse() as $move)
             <div class="swiper-slide">
                 <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
                 <div class="card border-0">
-                    <img src="{{ url('').'/'.$data->img_clip }}" alt="" width="100%" class="rounded">
+                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
                         <h5 class="my-2 text-capitalize text-black">{{ $move->title }}</h5>
                     </div>

@@ -43,6 +43,7 @@ $no = 1;
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                           <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="news" data-src="{{ url('').'/'.$new->img_clip }}" data-caption="{{ ucwords($new->title) }}">Image</a></li>
+                          <li><a class="dropdown-item" href="{{ route('news_view',['slug' => $new -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.news_edit', ['id' => $new -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

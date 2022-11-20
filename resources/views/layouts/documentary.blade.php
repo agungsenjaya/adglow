@@ -53,6 +53,7 @@ $no = 1;
                           @if($doc->link)
                           <li><a class="dropdown-item" href="{{ $doc->link }}" target="_blank">Link</a></li>
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('documentary_view',['slug' => $doc -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.documentary_edit', ['id' => $doc -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

@@ -64,6 +64,7 @@ $no = 1;
                           <li><a class="dropdown-item" href="{{ $link[0]->apple }}" target="_blank">Apple Music</a></li>
                           @endif
                           @endif
+                          <li><a class="dropdown-item" href="{{ route('music_view',['slug' => $musi -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.music_edit', ['id' => $musi -> id]) }}">Edit</a></li>
                         </ul>
                       </div>
