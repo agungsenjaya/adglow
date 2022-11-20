@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
-use App\Miniseries;
+use App\MiniSeries;
 
 class ClientController extends Controller
 {
@@ -26,12 +26,12 @@ class ClientController extends Controller
 
     public function miniseries()
     {
-        return view('client.miniseries')->with('miniseries',Miniseries::all());
+        return view('client.miniseries')->with('miniseries',MiniSeries::all());
     }
 
     public function miniseries_view($slug)
     {
-        $data = Miniseries::where('slug',$slug)->first();
-        return view('client.miniseries_view',compact('data'))->with('miniseries',Miniseries::all());
+        $data = MiniSeries::where('slug',$slug)->first();
+        return view('client.miniseries_view',compact('data'))->with('miniseries',MiniSeries::all());
     }
 }

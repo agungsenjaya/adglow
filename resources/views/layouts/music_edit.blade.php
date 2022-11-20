@@ -5,7 +5,7 @@ $no = 1;
 $link = json_decode($data->link);
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-<h1 class="h4">Music Edit</h1>
+<h1 class="h4 fw-bold">Music Edit</h1>
       </div>
       <section>
         <div class="card">
@@ -59,7 +59,10 @@ $link = json_decode($data->link);
           </div>
           <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
-              <textarea name="description" id="summernote">{{ $data->description ? $data->description : NULL }}</textarea>
+              <div id="editor">
+                {!! $data->description ? $data->description : NULL !!}
+              </div>
+              <input type="hidden" name="description" id="editor_name" value="{{ $data->description ? $data->description : NULL }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -68,21 +71,17 @@ $link = json_decode($data->link);
       </section>
 @endsection
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @endsection
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-  $('#summernote').summernote({
-    tabsize: 2,
-    height: 400,
-    toolbar: [
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['color', ['color']],
-          ['insert', ['link', 'video']],
-        ],
-        fontNames: ['Open Sans']
+  var quill = new Quill('#editor', {
+    theme: 'snow'
   });
+  quill.on('text-change', function(delta, oldDelta, source) {
+      document.getElementById("editor_name").value = quill.root.innerHTML;
+  });
+
 </script>
 @endsection

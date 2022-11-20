@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-<h1 class="h4">News Edit</h1>
+<h1 class="h4 fw-bold">News Edit</h1>
       </div>
       <section>
         <div class="card">
@@ -20,14 +20,63 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
-              <label class="form-label">Images</label>
-              <input type="file" class="form-control" name="img">
+              <label class="form-label">Images Clip</label>
+              <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
-          <div class="mb-3">
+            <div class="mb-3">
               <label class="form-label">Description</label>
-              <textarea name="description" id="summernote" required>{{ $data->description }}</textarea>
-            </div>
+              <div id="standalone-container">
+  <div id="toolbar-container">
+    <span class="ql-formats">
+      <select class="ql-size"></select>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-underline"></button>
+      <button class="ql-strike"></button>
+    </span>
+    <span class="ql-formats">
+      <select class="ql-color"></select>
+      <select class="ql-background"></select>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-script" value="sub"></button>
+      <button class="ql-script" value="super"></button>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-header" value="1"></button>
+      <button class="ql-header" value="2"></button>
+      <button class="ql-blockquote"></button>
+      <button class="ql-code-block"></button>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-list" value="ordered"></button>
+      <button class="ql-list" value="bullet"></button>
+      <button class="ql-indent" value="-1"></button>
+      <button class="ql-indent" value="+1"></button>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-direction" value="rtl"></button>
+      <select class="ql-align"></select>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-link"></button>
+      <button class="ql-image"></button>
+      <button class="ql-video"></button>
+      <button class="ql-formula"></button>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-clean"></button>
+    </span>
+  </div>
+  <div id="editor">
+  {!! $data->description ? $data->description : NULL !!}
+  </div>
+  <input type="hidden" name="description" id="editor_name" value="{{ $data->description ? $data->description : NULL }}" required>
+</div>
+</div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
           </div>
@@ -35,21 +84,26 @@ $no = 1;
       </section>
 @endsection
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @endsection
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  $('#summernote').summernote({
-    tabsize: 2,
-    height: 400,
-    toolbar: [
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['color', ['color']],
-          ['insert', ['link', 'video']],
-        ],
-        fontNames: ['Open Sans']
+  let quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+      syntax: true,
+      toolbar: '#toolbar-container'
+    },
   });
+  quill.on('text-change', function(delta, oldDelta, source) {
+      document.getElementById("editor_name").value = quill.root.innerHTML;
+  });
+
 </script>
 @endsection

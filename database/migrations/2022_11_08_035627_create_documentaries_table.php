@@ -16,7 +16,6 @@ class CreateDocumentariesTable extends Migration
         Schema::create('documentaries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('img_cover');
             $table->string('img_clip');
             $table->json('img_highlight')->nullable();
             $table->date('tgl_tayang')->nullable();

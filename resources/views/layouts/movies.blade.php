@@ -38,7 +38,7 @@ $no = 1;
                 <tr>
                   <td>{{ counTing($no++) }}</td>
                   <td class="text-capitalize">{{ $move->title }}</td>
-                  <td>{{ $move->tgl_tayang }}</td>
+                  <td>{{ $move->tgl_tayang ? $move->tgl_tayang : '-' }}</td>
                   <td>{{ $move->duration ? $move->duration : '-' }}</td>
                   <td class="text-capitalize">{{ $move->director }}</td>
                   <td class="text-capitalize">{{ $move->producer }}</td>

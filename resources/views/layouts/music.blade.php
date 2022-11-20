@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Music</h1>
+  <h1 class="h4 fw-bold">Music</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -44,14 +44,14 @@ $no = 1;
                   <td class="text-capitalize">{{ $musi->creator ? $musi->creator : '-' }}</td>
                   <td>{{ $musi->tgl_tayang ? $musi->tgl_tayang : '-' }}</td>
                   <td>
-                      <div class="dropdown ">
+                      <div class="dropdown">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ $musi->img }}" data-caption="{{ $musi->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ url('').'/'.$musi->img_clip }}" data-caption="{{ ucwords($musi->title) }}">Image</a></li>
                           @if($musi->trailer)
-                          <li><a class="dropdown-item" href="{{ $musi->trailer }}" target="_blank">Trailer</a></li>
+                          <li><a class="dropdown-item" href="{{ $musi->trailer }}" target="_blank">Youtube</a></li>
                           @endif
                           @if($musi->link)
                           @if($link[0]->spotify)

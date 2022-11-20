@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Doc & Tv Program</h1>
+  <h1 class="h4 fw-bold">Doc & Tv Program</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -46,7 +46,7 @@ $no = 1;
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ $doc->img }}" data-caption="{{ $doc->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="music" data-src="{{ url('').'/'.$doc->img_clip }}" data-caption="{{ ucwords($doc->title) }}">Image</a></li>
                           @if($doc->trailer)
                           <li><a class="dropdown-item" href="{{ $doc->trailer }}" target="_blank">Trailer</a></li>
                           @endif

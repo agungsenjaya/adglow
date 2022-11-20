@@ -10,6 +10,7 @@ use App\Music;
 use App\Book;
 use App\News;
 use App\Documentary;
+use App\User;
 use DB,Validator,Str,Session;
 use stdClass;
 
@@ -22,7 +23,51 @@ class AdminController extends Controller
 
     public function home()
     {
-        return view('layouts.home');
+        return view('layouts.home')
+        ->with('movies', Movie::count())
+        ->with('miniseries', MiniSeries::count())
+        ->with('commercial', Commercial::count())
+        ->with('music', Music::count())
+        ->with('book', Book::count())
+        ->with('news', News::count())
+        ->with('documentary', Documentary::count());
+    }
+
+    public function account()
+    {
+        return view('layouts.account'); 
+    }
+
+    public function account_update(Request $request)
+    {
+        $data = User::find($request->id);
+        $valid = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid->errors())->withInput();
+        }else{ 
+            $data->name = $request->name; 
+            $data->email = $request->email; 
+            if ($request->password) {
+                $dat =  Validator::make($request->all(), [
+                    'password' => ['required', 'string', 'confirmed'],
+                ]);
+                if ($dat->fails()) {
+                    Session::flash('failed','Data gagal input, coba periksa kembali.');
+                    return redirect()->back()->withErrors($valid->errors())->withInput();
+                }
+                $data->password = Hash::make($request->password); 
+            }
+            $data->save();
+
+            if ($data) {
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.account');
+            }
+        }
     }
 
     public function movies()
@@ -46,7 +91,6 @@ class AdminController extends Controller
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:movies',
             'img_clip' => 'required',
-            'img_cover' => 'required',
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
@@ -56,10 +100,6 @@ class AdminController extends Controller
             $img_clip_new = time().$img_clip->getClientOriginalName();
             $img_clip->move('img/movies', $img_clip_new);
             
-            $img_cover = $request->img_cover;
-            $img_cover_new = time().$img_cover->getClientOriginalName();
-            $img_cover->move('img/movies', $img_cover_new);
-
             $new_highlight = [];
             foreach ($request->img_highlight as $img_light) {
                 $a = $img_light;
@@ -72,9 +112,8 @@ class AdminController extends Controller
             $data = Movie::create([
                 'title' => $request->title,
                 'img_clip' => 'img/movies/' . $img_clip_new,
-                'img_cover' => 'img/movies/' . $img_cover_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
-                'tgl_tayang' => $request->tgl_tayang,
+                'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
                 'director' => $request->director,
@@ -108,12 +147,6 @@ class AdminController extends Controller
                 $data->img_clip = 'img/movies/' . $img_clip_new;
             }
             
-            if ($request->hasFile('img_cover')) {
-                $img_cover = $request->img_cover;
-                $img_cover_new = time().$img_cover->getClientOriginalName();
-                $img_cover->move('img/movies', $img_cover_new);
-                $data->img_cover = 'img/movies/' . $img_cover_new;
-            }
             
             if ($request->hasFile('img_highlight')) {
                 $new_highlight = [];
@@ -128,7 +161,7 @@ class AdminController extends Controller
             }
 
             $data->title = $request->title;
-            $data->tgl_tayang = $request->tgl_tayang;
+            $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
             $data->producer = $request->producer;
             $data->duration = $request->duration ? $request->duration : NULL;
             $data->director = $request->director;
@@ -166,19 +199,29 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:miniseries',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/miniseries', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/miniseries', $img_clip_new);
+
+            $new_highlight = [];
+            foreach ($request->img_highlight as $img_light) {
+                $a = $img_light;
+                $b = time().$a->getClientOriginalName();
+                $a->move('img/miniseries', $b);
+                $c = 'img/miniseries/' . $b;
+                array_push($new_highlight,$c);
+            }
 
             $data = MiniSeries::create([
                 'title' => $request->title,
-                'img' => 'img/miniseries/' . $img_new,
+                'img_clip' => 'img/miniseries/' . $img_clip_new,
+                'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
@@ -206,16 +249,26 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/miniseries', $img_new);
-                $data->img = 'img/miniseries/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/miniseries', $img_clip_new);
+                $data->img_clip = 'img/miniseries/' . $img_clip_new;
+            }
+            if ($request->hasFile('img_highlight')) {
+                $new_highlight = [];
+                foreach ($request->img_highlight as $img_light) {
+                    $a = $img_light;
+                    $b = time().$a->getClientOriginalName();
+                    $a->move('img/miniseries', $b);
+                    $c = 'img/miniseries/' . $b;
+                    array_push($new_highlight,$c);
+                }
+                $data->img_highlight = json_encode($new_highlight);
             }
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang;
             $data->producer = $request->producer;
-            $data->duration = $request->duration ? $request->duration : NULL;
             $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
@@ -251,19 +304,29 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:commercials',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/commercial', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/commercial', $img_clip_new);
+
+            $new_highlight = [];
+            foreach ($request->img_highlight as $img_light) {
+                $a = $img_light;
+                $b = time().$a->getClientOriginalName();
+                $a->move('img/commercial', $b);
+                $c = 'img/commercial/' . $b;
+                array_push($new_highlight,$c);
+            }
 
             $data = Commercial::create([
                 'title' => $request->title,
-                'img' => 'img/commercial/' . $img_new,
+                'img_clip' => 'img/commercial/' . $img_clip_new,
+                'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'producer' => $request->producer,
                 'director' => $request->director,
@@ -290,11 +353,22 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/commercial', $img_new);
-                $data->img = 'img/commercial/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/commercial', $img_clip_new);
+                $data->img_clip = 'img/commercial/' . $img_clip_new;
+            }
+            if ($request->hasFile('img_highlight')) {
+                $new_highlight = [];
+                foreach ($request->img_highlight as $img_light) {
+                    $a = $img_light;
+                    $b = time().$a->getClientOriginalName();
+                    $a->move('img/commercial', $b);
+                    $c = 'img/commercial/' . $b;
+                    array_push($new_highlight,$c);
+                }
+                $data->img_highlight = json_encode($new_highlight);
             }
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
@@ -334,15 +408,15 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:music',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/music', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/music', $img_clip_new);
 
             $link = new stdClass();
             $link->spotify = $request->spotify ? $request->spotify : NULL;
@@ -352,7 +426,7 @@ class AdminController extends Controller
 
             $data = Music::create([
                 'title' => $request->title,
-                'img' => 'img/music/' . $img_new,
+                'img_clip' => 'img/music/' . $img_clip_new,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'creator' => $request->creator ? $request->creator : NULL,
                 'artist' => $request->artist ? $request->artist : NULL,
@@ -378,11 +452,11 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/music', $img_new);
-                $data->img = 'img/music/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/music', $img_clip_new);
+                $data->img_clip = 'img/music/' . $img_clip_new;
             }
 
             $link = new stdClass();
@@ -428,20 +502,21 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:books',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/book', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/book', $img_clip_new);
 
             $data = Book::create([
                 'title' => $request->title,
-                'img' => 'img/book/' . $img_new,
+                'img_clip' => 'img/book/' . $img_clip_new,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'link' => $request->link ? $request->link : NULL,
                 'creator' => $request->creator ? $request->creator : NULL,
                 'description' => $request->description ? $request->description : NULL,
                 'slug' => Str::slug($request->title),
@@ -463,14 +538,15 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/book', $img_new);
-                $data->img = 'img/book/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/book', $img_clip_new);
+                $data->img_clip = 'img/book/' . $img_clip_new;
             }
 
             $data->title = $request->title;
+            $data->link = $request->link ? $request->link : NULL;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
             $data->creator = $request->creator ? $request->creator : NULL;
             $data->description = $request->description ? $request->description : NULL;
@@ -504,19 +580,29 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:documentaries',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/documentary', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/documentary', $img_clip_new);
+
+            $new_highlight = [];
+            foreach ($request->img_highlight as $img_light) {
+                $a = $img_light;
+                $b = time().$a->getClientOriginalName();
+                $a->move('img/documentary', $b);
+                $c = 'img/documentary/' . $b;
+                array_push($new_highlight,$c);
+            }
 
             $data = Documentary::create([
                 'title' => $request->title,
-                'img' => 'img/documentary/' . $img_new,
+                'img_clip' => 'img/documentary/' . $img_clip_new,
+                'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'producer' => $request->producer ? $request->producer : NULL,
                 'director' => $request->director ? $request->director : NULL,
@@ -542,11 +628,11 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/documentary', $img_new);
-                $data->img = 'img/documentary/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/documentary', $img_clip_new);
+                $data->img_clip = 'img/documentary/' . $img_clip_new;
             }
 
             $data->title = $request->title;
@@ -586,15 +672,15 @@ class AdminController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'title' => 'required|unique:news',
-            'img' => 'required'
+            'img_clip' => 'required'
         ]);
         if ($valid->fails()) {
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            $img = $request->img;
-            $img_new = time().$img->getClientOriginalName();
-            $img->move('img/news', $img_new);
+            $img_clip = $request->img_clip;
+            $img_clip_new = time().$img_clip->getClientOriginalName();
+            $img_clip->move('img/news', $img_clip_new);
 
             $detail=$request->input('description');
             $dom = new \DomDocument();
@@ -615,7 +701,7 @@ class AdminController extends Controller
 
             $data = News::create([
                 'title' => $request->title,
-                'img' => 'img/news/' . $img_new,
+                'img_clip' => 'img/news/' . $img_clip_new,
                 'description' => $detail,
                 'slug' => Str::slug($request->title),
             ]);
@@ -637,14 +723,14 @@ class AdminController extends Controller
             Session::flash('failed','Data gagal input, coba periksa kembali.');
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
-            if ($request->hasFile('img')) {
-                $img = $request->img;
-                $img_new = time().$img->getClientOriginalName();
-                $img->move('img/news', $img_new);
-                $data->img = 'img/news/' . $img_new;
+            if ($request->hasFile('img_clip')) {
+                $img_clip = $request->img_clip;
+                $img_clip_new = time().$img_clip->getClientOriginalName();
+                $img_clip->move('img/news', $img_clip_new);
+                $data->img_clip = 'img/news/' . $img_clip_new;
             }
 
-            $detail=$request->input('content');
+            $detail=$request->input('description');
             $dom = new \DomDocument();
             @$dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
             $images = $dom->getElementsByTagName('img');

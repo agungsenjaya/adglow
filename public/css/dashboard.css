@@ -126,3 +126,19 @@ label {
   font-weight: 600;
   font-family: 'Noto Sans';
 }
+th {
+  font-family: 'Noto Sans';
+}
+
+.btn {
+  /* font-family: 'Noto Sans'; */
+  font-weight: 700;
+  text-transform: capitalize;
+  border-radius: 50em;
+  font-size: 13px;
+  width: 200px;
+}
+
+.pace .pace-progress {
+  background: #167841 !important;
+}

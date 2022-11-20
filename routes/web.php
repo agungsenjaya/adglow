@@ -32,6 +32,8 @@ Auth::routes([
 Route::GROUP(['prefix' => 'dashboard',  'middleware' => ['auth:web']], function(){
 
 Route::GET('/', 'AdminController@home')->name('home');
+Route::GET('account', 'AdminController@account')->name('admin.account');
+Route::POST('account/update', 'AdminController@account_update')->name('admin.account_update');
 
 Route::GET('/movies', 'AdminController@movies')->name('admin.movies');
 Route::GET('/movies/create', 'AdminController@movies_create')->name('admin.movies_create');
@@ -74,5 +76,6 @@ Route::GET('/news/create', 'AdminController@news_create')->name('admin.news_crea
 Route::POST('/news/store', 'AdminController@news_store')->name('admin.news_store');
 Route::GET('/news/edit/{id}', 'AdminController@news_edit')->name('admin.news_edit');
 Route::POST('/news/update/{id}', 'AdminController@news_update')->name('admin.news_update');
+
 
 });

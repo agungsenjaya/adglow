@@ -20,18 +20,14 @@ $no = 1;
               <input type="text" class="form-control" name="title" required>
             </div>
             <div class="col">
-              <label class="form-label">Images Cover</label>
-              <input type="file" class="form-control" name="img_cover" required>
-            </div>
-            <div class="col">
               <label class="form-label">Images Clip</label>
               <input type="file" class="form-control" name="img_clip" required>
             </div>
             </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Tanggal Tayang</label>
-              <input type="date" class="form-control" name="tgl_tayang" required>
+              <label class="form-label">Tanggal Tayang (Optional)</label>
+              <input type="date" class="form-control" name="tgl_tayang">
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
@@ -57,7 +53,7 @@ $no = 1;
               <label class="form-label">Trailer (Optional)</label>
               <input type="text" class="form-control" name="trailer">
             </div>
-            <div class="col">
+            <div class="col d-none">
               <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" name="link">
             </div>
@@ -67,7 +63,7 @@ $no = 1;
               <input type="file" class="form-control" name="img_highlight[]" multiple="true" id="img_highlight" onchange="previewImage()" required>
               <div class="row" id="image_preview"></div>
           </div>
-          <div class="mb-3">
+            <div class="mb-3">
               <label class="form-label">Description (Optional)</label>
               <div id="editor"></div>
               <input type="hidden" name="description" id="editor_name">
@@ -97,7 +93,7 @@ $no = 1;
   {
     let total_file = document.getElementById("img_highlight").files.length;
     for(let nim = 0; nim < total_file ; nim++){
-      $('#image_preview').append(`<div class="col-md-2 mt-3 image-${nim}">
+      $('#image_preview').append(`<div class="col-md-2 mt-3 image image-${nim}">
         <div class="position-relative">
           <img src="${URL.createObjectURL(event.target.files[nim])}" alt="" width="100%" class="rounded">
           <div class="to-center text-center d-none">
@@ -113,6 +109,11 @@ $no = 1;
       images.push(object);
     }
     console.log($('input[name="img_highlight[]"]')[0].files);
+    let hasFile = $('input[name="img_highlight[]"]').val();
+    if (!hasFile) {
+      $('input[name="img_highlight[]"]').val('');
+      $('.image').remove();
+    }
   }
 
   function removeImage(e)

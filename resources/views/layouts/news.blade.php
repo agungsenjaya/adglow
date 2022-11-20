@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">News</h1>
+  <h1 class="h4 fw-bold">News</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -42,7 +42,7 @@ $no = 1;
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="news" data-src="{{ $new->img }}" data-caption="{{ $new->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="news" data-src="{{ url('').'/'.$new->img_clip }}" data-caption="{{ ucwords($new->title) }}">Image</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.news_edit', ['id' => $new -> id]) }}">Edit</a></li>
                         </ul>
                       </div>

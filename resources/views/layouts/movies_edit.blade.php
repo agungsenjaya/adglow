@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-<h1 class="h4">Movies Edit</h1>
+<h1 class="h4 fw-bold">Movies Edit</h1>
       </div>
       <section>
         <div class="card">
@@ -20,18 +20,14 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
-              <label class="form-label">Images Cover</label>
-              <input type="file" class="form-control" name="img_cover">
-            </div>
-            <div class="col">
               <label class="form-label">Images Clip</label>
               <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Tanggal Tayang</label>
-              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang }}" required>
+              <label class="form-label">Tanggal Tayang (Optional)</label>
+              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang }}">
             </div>
             <div class="col">
               <label class="form-label">Durasi (Optional)</label>
@@ -57,7 +53,7 @@ $no = 1;
               <label class="form-label">Trailer (Optional)</label>
               <input type="text" class="form-control" name="trailer" value="{{ $data->trailer ? $data->trailer : NULL }}">
             </div>
-            <div class="col">
+            <div class="col d-none">
               <label class="form-label">Link (Optional)</label>
               <input type="text" class="form-control" value="{{ $data->link ? $data->link : NULL }}" name="link">
             </div>
@@ -98,7 +94,7 @@ $no = 1;
   {
     let total_file = document.getElementById("img_highlight").files.length;
     for(let nim = 0; nim < total_file ; nim++){
-      $('#image_preview').append(`<div class="col-md-2 mt-3 image-${nim}">
+      $('#image_preview').append(`<div class="col-md-2 mt-3 image image-${nim}">
         <div class="position-relative">
           <img src="${URL.createObjectURL(event.target.files[nim])}" alt="" width="100%" class="rounded">
           <div class="to-center text-center d-none">
@@ -114,6 +110,11 @@ $no = 1;
       images.push(object);
     }
     console.log($('input[name="img_highlight[]"]')[0].files);
+    let hasFile = $('input[name="img_highlight[]"]').val();
+    if (!hasFile) {
+      $('input[name="img_highlight[]"]').val('');
+      $('.image').remove();
+    }
   }
 
   function removeImage(e)

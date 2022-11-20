@@ -4,7 +4,7 @@
 $no = 1;
 @endphp
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h4">Book</h1>
+  <h1 class="h4 fw-bold">Book</h1>
       </div>
       <section class="mb-3">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -27,7 +27,7 @@ $no = 1;
                   <th>No</th>
                   <th class="col-3">Judul</th>
                   <th class="col-2">Creator</th>
-                  <th class="col-2">Tgl Tayang</th>
+                  <th class="col-2">Tgl Rilis</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -44,7 +44,7 @@ $no = 1;
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="book" data-src="{{ $boo->img }}" data-caption="{{ $boo->title }}">Image</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-fancybox="book" data-src="{{ url('').'/'.$boo->img_clip }}" data-caption="{{ ucwords($boo->title) }}">Image</a></li>
                           @if($boo->trailer)
                           <li><a class="dropdown-item" href="{{ $boo->trailer }}" target="_blank">Trailer</a></li>
                           @endif

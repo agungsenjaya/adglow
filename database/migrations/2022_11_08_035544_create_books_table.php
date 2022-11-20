@@ -16,7 +16,7 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('img');
+            $table->string('img_clip');
             $table->date('tgl_tayang')->nullable();
             $table->string('creator')->nullable();
             $table->string('price')->nullable();

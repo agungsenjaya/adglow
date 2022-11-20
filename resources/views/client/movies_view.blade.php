@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="position-relative">
-    <img src="{{ url('').'/'.$data->img_cover }}" alt="" width="100%">
+    <img src="https://dummyimage.com/1349x600" alt="" width="100%">
     <div class="to-bottom">
         <div class="container text-center mb-5">
             <a href="#" class="btn btn-light">
