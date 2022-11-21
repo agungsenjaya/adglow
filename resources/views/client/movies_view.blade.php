@@ -78,7 +78,7 @@
                             <i class="text-black bi-share h3 me-3"></i>
                             <div class="media-body">
                                 <h5 class="fw-bold text-black">Share Movies</h5>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">>Share link</a>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">Share link</a>
                             </div>
                         </div>
                     </div>
@@ -163,20 +163,20 @@
 
 <div class="modal" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-0">
+    <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="shareModalLabel">Share Movies</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <div class="text-center justify-content-center">
-                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                        <a class="a2a_button_facebook"></a>
-                        <a class="a2a_button_twitter"></a>
-                        <a class="a2a_button_telegram"></a>
-                        <a class="a2a_button_whatsapp"></a>
-                    </div>
-                </div>
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_telegram"></a>
+                <a class="a2a_button_whatsapp"></a>
+            </div>
+        </div>
       </div>
     </div>
   </div>
