@@ -10,7 +10,7 @@
             <div class="px-4">
                 <h3 class="text-capitalize fw-bold mb-3 text-black">{{ $data->title }}</h3>
                 {!! $data->description !!}
-                <div class="py-3">
+                <div class="pb-3">
                     <p class="text-black">Directed By</p>
                     <p class="text-capitalize">
                         @if($data->director)
@@ -30,7 +30,7 @@
                         @endif
                     </p>
                 </div>
-                <div class="">
+                <div class="pb-3">
                     <p class="text-black">Artist</p>
                     <p class="text-capitalize">
                         @if($data->artist)
@@ -40,15 +40,17 @@
                         @endif
                     </p>
                 </div>
-
-                <!-- <div class="text-center">
+                <div class="">
+                <p class="text-black">Share</p>
+                <div class="text-center">
                     <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
                         <a class="a2a_button_facebook"></a>
                         <a class="a2a_button_twitter"></a>
                         <a class="a2a_button_telegram"></a>
                         <a class="a2a_button_whatsapp"></a>
                     </div>
-                </div> -->
+                </div>
+                </div>
 
             </div>
             </div>
@@ -56,6 +58,7 @@
 
         <div class="row mb-5 justify-content-center">
             <div class="col-md-8">
+                <h3 class="mb-3 fw-bold text-black">Trailer Miniseries</h3>
                 <div class="position-relative">
                     <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
                     <div class="to-center text-center">
@@ -68,7 +71,7 @@
         </div>
 
         <div class="">
-            <!-- <h3 class="mb-3 text-black">Highlight</h3> -->
+            <h3 class="mb-3 text-black fw-bold">Highlight Miniseries</h3>
             <div class="swiper swiper-1">
   <div class="swiper-wrapper">
     @php
@@ -158,6 +161,6 @@
     });
 
     var a2a_config = a2a_config || {};
-    a2a_config.icon_color = "transparent,#000";
+    a2a_config.icon_color = "#000,#fff";
 </script>
 @endsection

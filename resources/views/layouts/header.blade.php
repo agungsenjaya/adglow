@@ -1,4 +1,4 @@
-<header class="">
+<header class="sticky-top">
 <nav class="navbar navbar-expand-lg bg-black navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ route('index') }}">

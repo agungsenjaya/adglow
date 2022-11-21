@@ -10,7 +10,7 @@
             <div class="px-4">
                 <h3 class="text-capitalize fw-bold mb-3 text-black">{{ $data->title }}</h3>
                 {!! $data->description !!}
-                <div class="py-3">
+                <div class="pb-3">
                     <p class="text-black">Directed By</p>
                     <p class="text-capitalize">
                         @if($data->director)
@@ -30,7 +30,7 @@
                         @endif
                     </p>
                 </div>
-                <div class="">
+                <div class="pb-3">
                     <p class="text-black">Artist</p>
                     <p class="text-capitalize">
                         @if($data->artist)
@@ -40,27 +40,69 @@
                         @endif
                     </p>
                 </div>
-
-                <!-- <div class="text-center">
-                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                        <a class="a2a_button_facebook"></a>
-                        <a class="a2a_button_twitter"></a>
-                        <a class="a2a_button_telegram"></a>
-                        <a class="a2a_button_whatsapp"></a>
-                    </div>
-                </div> -->
-
             </div>
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="media">
+                            <i class="text-black bi-calendar-event h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Release Date</h5>
+                                @if($data->tgl_tayang)
+                                {{ $data->tgl_tayang }}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-clock h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Duration</h5>
+                                @if($data->duration)
+                                {{ $data->duration }}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-share h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Share Movies</h5>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">>Share link</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-link-45deg h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Trailer Movies</h5>
+                                <a href="javascript:void(0)">Visit link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="row mb-5 justify-content-center">
             <div class="col-md-8">
+                <!-- <h3 class="mb-3 fw-bold text-black text-center">Trailer Movies</h3> -->
                 <div class="position-relative">
                     <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
                     <div class="to-center text-center">
-                        <a href="javascript:void(0)" class="btn-icon bg-white text-black">
-                            <i class="bi-play-fill"></i>
+                        <a href="javascript:void(0)" class="text-white">
+                            <i class="bi-play-circle-fill display-4"></i>
                         </a>
                     </div>
                 </div>
@@ -68,7 +110,7 @@
         </div>
 
         <div class="">
-            <!-- <h3 class="mb-3 text-black">Highlight</h3> -->
+            <!-- <h3 class="mb-3 fw-bold text-black">Highlight Movies</h3> -->
             <div class="swiper swiper-1">
   <div class="swiper-wrapper">
     @php
@@ -118,6 +160,27 @@
         </div>
     </div>
 </section>
+
+<div class="modal" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="shareModalLabel">Share Movies</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="text-center justify-content-center">
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_twitter"></a>
+                        <a class="a2a_button_telegram"></a>
+                        <a class="a2a_button_whatsapp"></a>
+                    </div>
+                </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/swiper.css') }}"/>
@@ -158,6 +221,6 @@
     });
 
     var a2a_config = a2a_config || {};
-    a2a_config.icon_color = "transparent,#000";
+    a2a_config.icon_color = "#000,#fff";
 </script>
 @endsection
