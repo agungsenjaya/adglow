@@ -20,20 +20,10 @@ $no = 1;
               <input type="text" class="form-control" name="title" required>
             </div>
             <div class="col">
-              <label class="form-label">Images Clip</label>
+              <label class="form-label">Images Poster</label>
               <input type="file" class="form-control" name="img_clip" required>
             </div>
             </div>
-            <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Producer</label>
-              <input type="text" class="form-control" name="producer" required>
-            </div>
-            <div class="col">
-              <label class="form-label">Director</label>
-              <input type="text" class="form-control" name="director" required>
-            </div>
-          </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Trailer (Optional)</label>

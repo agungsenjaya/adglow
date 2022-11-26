@@ -20,20 +20,10 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
-              <label class="form-label">Images Clip</label>
+              <label class="form-label">Images Poster</label>
               <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
-            <div class="row mb-3">
-            <div class="col">
-              <label class="form-label">Producer</label>
-              <input type="text" class="form-control" name="producer" value="{{ $data->producer }}" required>
-            </div>
-            <div class="col">
-              <label class="form-label">Director</label>
-              <input type="text" class="form-control" name="director" value="{{ $data->director }}" required>
-            </div>
-          </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Trailer (Optional)</label>

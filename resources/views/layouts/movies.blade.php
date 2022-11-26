@@ -25,7 +25,7 @@ $no = 1;
               <thead>
                 <tr>
                   <th>No</th>
-                  <th class="col-3">Judul</th>
+                  <th class="col-3">Title</th>
                   <th>Tgl Tayang</th>
                   <th>Duration</th>
                   <th class="col-2">Director</th>
@@ -43,7 +43,7 @@ $no = 1;
                   <td class="text-capitalize">{{ $move->director }}</td>
                   <td class="text-capitalize">{{ $move->producer }}</td>
                   <td>
-                      <div class="dropdown ">
+                      <div class="dropdown">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi-three-dots-vertical me-2"></i>Action
                         </a>
@@ -53,7 +53,7 @@ $no = 1;
                           <li><a class="dropdown-item" href="{{ $move->trailer }}" target="_blank">Trailer</a></li>
                           @endif
                           @if($move->link)
-                          <li><a class="dropdown-item" href="{{ $move->link }}" target="_blank">Link</a></li>
+                          <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#linkModal" onClick="linkModal({{ $move }})">Link</a></li>
                           @endif
                           <li><a class="dropdown-item" href="{{ route('movies_view',['slug' => $move -> slug]) }}" target="_blank">Detail</a></li>
                           <li><a class="dropdown-item" href="{{ route('admin.movies_edit', ['id' => $move -> id]) }}">Edit</a></li>
@@ -67,6 +67,21 @@ $no = 1;
           </div>
         </div>
       </section>
+      
+      <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title ms-auto fw-bold fs-5" id="linkModalLabel">Watch Movie</p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+              <ul class="list-group link-movie list-group-flush w-75" id="movie-link">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
@@ -78,5 +93,17 @@ $no = 1;
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script>
   $('#table1').DataTable();
+
+  function linkModal(e){
+    let link = JSON.parse(e.link);
+    link.forEach(element => {
+      $('#movie-link').append(`
+      <li class="list-group-item movie-list">
+        <a href="${element.link}" class="btn btn-outline-primary rounded-pill w-100" target="_blank">
+          ${element.name}
+        </a>
+      </li>`);
+    });
+  }
 </script>
 @endsection

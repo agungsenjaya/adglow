@@ -93,5 +93,11 @@ Route::POST('/news/store', 'AdminController@news_store')->name('admin.news_store
 Route::GET('/news/edit/{id}', 'AdminController@news_edit')->name('admin.news_edit');
 Route::POST('/news/update/{id}', 'AdminController@news_update')->name('admin.news_update');
 
+Route::GET('/genre', 'AdminController@genre')->name('admin.genre');
+Route::GET('/genre/create', 'AdminController@genre_create')->name('admin.genre_create');
+Route::POST('/genre/store', 'AdminController@genre_store')->name('admin.genre_store');
+Route::GET('/genre/edit/{id}', 'AdminController@genre_edit')->name('admin.genre_edit');
+Route::POST('/genre/update/{id}', 'AdminController@genre_update')->name('admin.genre_update');
+
 
 });

@@ -32,7 +32,6 @@ body {
   }
   
   .sidebar .nav-link {
-    font-weight: 600;
     font-family: 'Noto Sans';
     color: #333;
   }
@@ -62,7 +61,7 @@ body {
   .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
-    background-color: #000;
+    /* background-color: #0b4e28; */
     /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25); */
   }
   
@@ -103,6 +102,7 @@ body {
   .nav-admin-sub > a {
     color: #fff !important;
     background-color: transparent !important;
+    border-color: transparent;
   }
 
   .nav-admin-sub > a:hover {
@@ -123,7 +123,8 @@ body {
     bottom: auto;
 }
 label {
-  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
   font-family: 'Noto Sans';
 }
 th {
@@ -131,13 +132,25 @@ th {
 }
 
 .btn {
-  font-weight: 700;
-  text-transform: capitalize;
-  border-radius: 50em;
+  text-transform: uppercase;
+  border-radius: 0;
   font-size: 13px;
-  width: 200px;
+  /* width: 200px; */
+  font-family: 'Noto Sans';
+}
+
+.form-control, .card {
+  border-radius: 0;
 }
 
 .pace .pace-progress {
   background: #167841 !important;
+}
+
+#link > li {
+  border:none !important;
+}
+
+.link-movie > li {
+  border-color: transparent;
 }

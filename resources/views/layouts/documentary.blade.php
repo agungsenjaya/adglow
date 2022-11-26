@@ -25,7 +25,7 @@ $no = 1;
               <thead>
                 <tr>
                   <th>No</th>
-                  <th class="col-3">Judul</th>
+                  <th class="col-3">Title</th>
                   <th class="col-2">Director</th>
                   <th class="col-2">Producer</th>
                   <th class="col-2">Tgl Tayang</th>

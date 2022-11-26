@@ -39,7 +39,8 @@
                         <tr>
                             <td class="title-3 ">Date Reg</td>
                             <td>:</td>
-                            <td>{{ Auth::user()->created_at }}</td>
+                            <td>
+                              {{ Auth::user()->created_at ? Auth::user()->created_at : '-' }}</td>
                         </tr>
                         <tr class="border-transparent">
                             <td class="title-3 ">Email Address</td>

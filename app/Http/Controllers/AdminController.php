@@ -11,6 +11,7 @@ use App\Book;
 use App\News;
 use App\Documentary;
 use App\User;
+use App\Genre;
 use DB,Validator,Str,Session;
 use stdClass;
 
@@ -77,13 +78,13 @@ class AdminController extends Controller
     
     public function movies_create()
     {
-        return view('layouts.movies_create');
+        return view('layouts.movies_create')->with('genre', Genre::all());
     }
     
     public function movies_edit($id)
     {
         $data = Movie::find($id);
-        return view('layouts.movies_edit',compact('data'));
+        return view('layouts.movies_edit',compact('data'))->with('genre',Genre::all());
     }
 
     public function movies_store(Request $request)
@@ -100,6 +101,14 @@ class AdminController extends Controller
             $img_clip_new = time().$img_clip->getClientOriginalName();
             $img_clip->move('img/movies', $img_clip_new);
             
+            $img_background = $request->img_background;
+            $img_background_new = time().$img_background->getClientOriginalName();
+            $img_background->move('img/movies', $img_background_new);
+            
+            $img_logo = $request->img_logo;
+            $img_logo_new = time().$img_logo->getClientOriginalName();
+            $img_logo->move('img/movies', $img_logo_new);
+            
             $new_highlight = [];
             foreach ($request->img_highlight as $img_light) {
                 $a = $img_light;
@@ -112,13 +121,17 @@ class AdminController extends Controller
             $data = Movie::create([
                 'title' => $request->title,
                 'img_clip' => 'img/movies/' . $img_clip_new,
+                'img_background' => 'img/movies/' . $img_background_new,
+                'img_logo' => 'img/movies/' . $img_logo_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
+                'genre_id' => $request->genre_id ? $request->genre_id : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
                 'director' => $request->director,
                 'artist' => $request->artist ? $request->artist : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
+                'genre_id' => $request->genre_id ? json_encode($request->genre_id) : NULL,
                 'link' => $request->link ? $request->link : NULL,
                 'description' => $request->description,
                 'slug' => Str::slug($request->title),
@@ -147,6 +160,20 @@ class AdminController extends Controller
                 $data->img_clip = 'img/movies/' . $img_clip_new;
             }
             
+            if ($request->hasFile('img_background')) {
+                $img_background = $request->img_background;
+                $img_background_new = time().$img_background->getClientOriginalName();
+                $img_background->move('img/movies', $img_background_new);
+                $data->img_background = 'img/movies/' . $img_background_new;
+            }
+            
+            if ($request->hasFile('img_logo')) {
+                $img_logo = $request->img_logo;
+                $img_logo_new = time().$img_logo->getClientOriginalName();
+                $img_logo->move('img/movies', $img_logo_new);
+                $data->img_logo = 'img/movies/' . $img_logo_new;
+            }
+            
             
             if ($request->hasFile('img_highlight')) {
                 $new_highlight = [];
@@ -167,6 +194,7 @@ class AdminController extends Controller
             $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->genre_id = $request->genre_id ? json_encode($request->genre_id) : NULL;
             $data->link = $request->link ? $request->link : NULL;
             $data->description = $request->description;
             $data->slug = Str::slug($request->title);
@@ -186,13 +214,13 @@ class AdminController extends Controller
     
     public function miniseries_create()
     {
-        return view('layouts.miniseries_create');
+        return view('layouts.miniseries_create')->with('genre', Genre::all());
     }
     
     public function miniseries_edit($id)
     {
         $data = MiniSeries::find($id);
-        return view('layouts.miniseries_edit',compact('data'));
+        return view('layouts.miniseries_edit',compact('data'))->with('genre', Genre::all());
     }
 
     public function miniseries_store(Request $request)
@@ -209,6 +237,14 @@ class AdminController extends Controller
             $img_clip_new = time().$img_clip->getClientOriginalName();
             $img_clip->move('img/miniseries', $img_clip_new);
 
+            $img_background = $request->img_background;
+            $img_background_new = time().$img_background->getClientOriginalName();
+            $img_background->move('img/miniseries', $img_background_new);
+            
+            $img_logo = $request->img_logo;
+            $img_logo_new = time().$img_logo->getClientOriginalName();
+            $img_logo->move('img/miniseries', $img_logo_new);
+
             $new_highlight = [];
             foreach ($request->img_highlight as $img_light) {
                 $a = $img_light;
@@ -221,6 +257,8 @@ class AdminController extends Controller
             $data = MiniSeries::create([
                 'title' => $request->title,
                 'img_clip' => 'img/miniseries/' . $img_clip_new,
+                'img_background' => 'img/miniseries/' . $img_background_new,
+                'img_logo' => 'img/miniseries/' . $img_logo_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang,
                 'producer' => $request->producer,
@@ -228,6 +266,9 @@ class AdminController extends Controller
                 'director' => $request->director,
                 'artist' => $request->artist ? $request->artist : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
+                'episode' => $request->episode ? $request->episode : NULL,
+                'season' => $request->season ? $request->season : NULL,
+                'genre_id' => $request->genre_id ? json_encode($request->genre_id) : NULL,
                 'link' => $request->link ? $request->link : NULL,
                 'description' => $request->description,
                 'slug' => Str::slug($request->title),
@@ -255,6 +296,21 @@ class AdminController extends Controller
                 $img_clip->move('img/miniseries', $img_clip_new);
                 $data->img_clip = 'img/miniseries/' . $img_clip_new;
             }
+            
+            if ($request->hasFile('img_background')) {
+                $img_background = $request->img_background;
+                $img_background_new = time().$img_background->getClientOriginalName();
+                $img_background->move('img/miniseries', $img_background_new);
+                $data->img_background = 'img/miniseries/' . $img_background_new;
+            }
+            
+            if ($request->hasFile('img_logo')) {
+                $img_logo = $request->img_logo;
+                $img_logo_new = time().$img_logo->getClientOriginalName();
+                $img_logo->move('img/miniseries', $img_logo_new);
+                $data->img_logo = 'img/miniseries/' . $img_logo_new;
+            }
+
             if ($request->hasFile('img_highlight')) {
                 $new_highlight = [];
                 foreach ($request->img_highlight as $img_light) {
@@ -266,12 +322,16 @@ class AdminController extends Controller
                 }
                 $data->img_highlight = json_encode($new_highlight);
             }
+            
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang;
             $data->producer = $request->producer;
             $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
+            $data->episode = $request->episode ? $request->episode : NULL;
+            $data->season = $request->season ? $request->season : NULL;
+            $data->genre_id = $request->genre_id ? json_encode($request->genre_id) : NULL;
             $data->link = $request->link ? $request->link : NULL;
             $data->description = $request->description;
             $data->slug = Str::slug($request->title);
@@ -328,8 +388,6 @@ class AdminController extends Controller
                 'img_clip' => 'img/commercial/' . $img_clip_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
-                'producer' => $request->producer,
-                'director' => $request->director,
                 'artist' => $request->artist ? $request->artist : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
                 'link' => $request->link ? $request->link : NULL,
@@ -372,8 +430,6 @@ class AdminController extends Controller
             }
             $data->title = $request->title;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
-            $data->producer = $request->producer;
-            $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
             $data->link = $request->link ? $request->link : NULL;
@@ -752,11 +808,68 @@ class AdminController extends Controller
 
             $data->title = $request->title;
             $data->description = $detail;
-            $data->slug = Str::slug($request->judul);
+            $data->slug = Str::slug($request->title);
             $data->save();
             if ($data) {
                 Session::flash('success','Data berhasil input, terima kasih.');
                 return redirect()->route('admin.news');
+            }
+        }
+    }
+
+    public function genre()
+    {
+        return view('layouts.genre')->with('genre', Genre::all());
+    }
+    
+    public function genre_create()
+    {
+        return view('layouts.genre_create');
+    }
+    
+    public function genre_store(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|unique:genres',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $data = Genre::create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title)
+            ]);
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.genre');
+            }
+        }
+    }
+
+    public function genre_edit($id)
+    {
+        $data = Genre::find($id);
+        return view('layouts.genre_edit', compact('data'));
+    }
+
+    public function genre_update(Request $request, $id)
+    {
+        $data = Genre::find($id);
+        $valid = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+        if ($valid->fails()) {
+            Session::flash('failed','Data gagal input, coba periksa kembali.');
+            return redirect()->back()->withErrors($valid)->withInput();
+        }else{
+            $data->title = $request->title;
+            $data->slug = Str::slug($request->title);
+            $data->save();
+
+            if($data){
+                Session::flash('success','Data berhasil input, terima kasih.');
+                return redirect()->route('admin.genre');
             }
         }
     }

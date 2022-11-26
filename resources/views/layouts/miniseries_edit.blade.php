@@ -14,13 +14,40 @@ $no = 1;
           @endforeach
           <form action="{{ route('admin.miniseries_update',['id' => $data -> id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row mb-3">
-            <div class="col">
+            <div class="mb-3">
               <label class="form-label">Title</label>
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
+            <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Images Clip</label>
+              <label class="form-label">Season (Optional)</label>
+              <input class="form-control number" name="season" value="{{ $data->season ? $data->season : NULL }}">
+            </div>
+            <div class="col">
+              <label class="form-label">Jumlah Episode (Optional)</label>
+              <input class="form-control number" name="episode" value="{{ $data->episode ? $data->episode : NULL }}">
+            </div>
+          </div>
+            <div class="mb-3">
+              <label class="form-label">Genre</label>
+              <select name="genre_id[]" id="select-genre" value="{{ $data->genre_id }}" class="w-100" multiple required>
+                <option value="">Select Option</option>
+                @foreach($genre as $gen)
+                <option value="{{ $gen->id }}">{{ $gen->title }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Images Logo</label>
+              <input type="file" class="form-control" name="img_logo">
+            </div>
+            <div class="col">
+              <label class="form-label">Images Background</label>
+              <input type="file" class="form-control" name="img_background">
+            </div>
+            <div class="col">
+              <label class="form-label">Images Poster</label>
               <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
@@ -38,6 +65,10 @@ $no = 1;
               <input type="text" class="form-control" name="director" value="{{ $data->director }}" required>
             </div>
           </div>
+          <div class="mb-3">
+              <label class="form-label">Artist (Optional)</label>
+              <input type="text" class="form-control" name="artist" value="{{ $data->artist ? $data->artist : NULL }}">
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Trailer (Optional)</label>
@@ -68,9 +99,13 @@ $no = 1;
 @endsection
 @section('css')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endsection
 @section('js')
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   var quill = new Quill('#editor', {
     theme: 'snow'
@@ -117,5 +152,18 @@ $no = 1;
     });
     $(`.image-${e}`).remove();
   }
+
+  $( '#select-genre' ).select2( {
+    theme: 'bootstrap-5'
+  });
+  
+  let genre = [];
+  let genre_list = <?php echo json_encode($data->genre_id) ?>;
+  for (let index = 0; index < genre_list.length; index++) {
+    const element = genre_list[index];
+    genre.push(element)
+  }
+
+  $("#select-genre").val(genre).trigger('change');
 </script>
 @endsection

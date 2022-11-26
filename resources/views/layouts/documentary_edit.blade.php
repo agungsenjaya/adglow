@@ -20,7 +20,7 @@ $no = 1;
               <input type="text" class="form-control" name="title" value="{{ $data->title }}" required>
             </div>
             <div class="col">
-              <label class="form-label">Images Clip</label>
+              <label class="form-label">Images Poster</label>
               <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
