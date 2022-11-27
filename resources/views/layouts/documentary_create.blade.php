@@ -30,12 +30,12 @@ $no = 1;
               <input type="date" class="form-control" name="tgl_tayang">
             </div>
             <div class="col">
-              <label class="form-label">Producer</label>
-              <input type="text" class="form-control" name="producer" required>
+              <label class="form-label">Producer (Optional)</label>
+              <input type="text" class="form-control" name="producer">
             </div>
             <div class="col">
-              <label class="form-label">Director</label>
-              <input type="text" class="form-control" name="director" required>
+              <label class="form-label">Director (Optional)</label>
+              <input type="text" class="form-control" name="director">
             </div>
           </div>
             <div class="row mb-3">

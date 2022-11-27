@@ -30,12 +30,12 @@ $no = 1;
               <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang ? $data->tgl_tayang : NULL }}">
             </div>
             <div class="col">
-              <label class="form-label">Producer</label>
-              <input type="text" class="form-control" name="producer" value="{{ $data->producer }}" required>
+              <label class="form-label">Producer (Optional)</label>
+              <input type="text" class="form-control" name="producer" value="{{ $data->producer ? $data->producer : NULL }}">
             </div>
             <div class="col">
-              <label class="form-label">Director</label>
-              <input type="text" class="form-control" name="director" value="{{ $data->director }}" required>
+              <label class="form-label">Director (Optional)</label>
+              <input type="text" class="form-control" name="director" value="{{ $data->director ? $data->director : NULL  }}">
             </div>
           </div>
             <div class="row mb-3">

@@ -25,9 +25,7 @@ $no = 1;
               <thead>
                 <tr>
                   <th>No</th>
-                  <th class="col-3">Title</th>
-                  <th class="col-2">Director</th>
-                  <th class="col-2">Producer</th>
+                  <th class="col-5">Title</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -36,8 +34,6 @@ $no = 1;
                 <tr>
                   <td>{{ counTing($no++) }}</td>
                   <td class="text-capitalize">{{ $comme->title }}</td>
-                  <td class="text-capitalize">{{ $comme->director }}</td>
-                  <td class="text-capitalize">{{ $comme->producer }}</td>
                   <td>
                       <div class="dropdown ">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
