@@ -131,7 +131,7 @@ viewBox="0 0 50 50">
     </div>
     <div class="row pt-4 my-4">
       <div class="col-md-1">
-      <img src="{{ asset('img/logo.png') }}" alt="" width="100%" class="border-0">
+      <img src="{{ asset('img/logo.png') }}" alt="" width="100%" class="border-0 img-white">
       </div>
       <div class="col-md-5">
         <p class="text-white">PT Sinema Digital Indonesia is a company engaged in the distribution of digital entertainment</p>

@@ -24,26 +24,191 @@
 </section>
 <section class="space-m">
     <div class="container">
-        <div class="d-flex">
-            <h3 class="mb-4 me-3">Movies</h3>
-        </div>
+        <h1 class="mb-4">Now Playing</h1>
         <div class="swiper swiper-2">
         <div class="swiper-wrapper">
-            @foreach($movies as $move)
+            @for($i = 0; $i < 4; $i++)
+            @foreach($movies->reverse() as $move)
             <div class="swiper-slide">
                 <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
                 <div class="card border-0 bg-transparent text-white">
-                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
+                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
+                    <img src="https://dummyimage.com/600x900" alt="" width="100%" class="rounded">
                     <div class="card-body">
+                      <div class="badge bg-white text-dark text-capitalize">
+                        @php
+                        $genre = json_decode($move->genre_id);
+                        @endphp
+                        @foreach($genre as $gen)
+                        @php
+                        $ge = App\Genre::find($gen);
+                        @endphp
+                        {{ $ge->title }}
+                        @endforeach
+                      </div>
                         <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
                     </div>
                 </div>
                 </a>
             </div>
             @endforeach
+            @endfor
         </div>
         </div>
     </div>
+</section>
+<section class="space-m border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 align-self-center">
+      <div class="pe-5">
+      <h1>Upcomming For You</h1>
+    <p>Will be live for you soon</p>
+    <ul class="nav nav-bottom mt-2">
+  <li class="nav-item me-3">
+    <a class="nav-link btn-icon bg-white text-center" href="javascript:void(0)">
+      <i class="bi-chevron-left text-black"></i>
+    </a>
+  </li>
+  <li class="nav-item me-3">
+    <a class="nav-link btn-icon bg-white text-center" href="javascript:void(0)">
+      <i class="bi-chevron-right text-black"></i>
+    </a>
+  </li>
+</ul>
+      </div>
+      </div>
+      <div class="col-md-9">
+
+      <div class="swiper swiper-3">
+        <div class="swiper-wrapper">
+            @for($i = 0; $i < 4; $i++)
+            @foreach($movies as $move)
+            <div class="swiper-slide">
+                <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
+                <div class="card border-0 bg-transparent text-white">
+                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
+                    <img src="https://dummyimage.com/600x900" alt="" width="100%" class="rounded">
+                    <div class="card-body">
+                    <div class="badge bg-white text-dark text-capitalize">
+                        @php
+                        $genre = json_decode($move->genre_id);
+                        @endphp
+                        @foreach($genre as $gen)
+                        @php
+                        $ge = App\Genre::find($gen);
+                        @endphp
+                        {{ $ge->title }}
+                        @endforeach
+                      </div>
+                        <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            @endforeach
+            @endfor
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<section class="space-m border-top">
+  <div class="container">
+    <h1>Latest News</h1>
+    <p class="mb-4">Get the latest news about movies and many more</p>
+
+    <div class="swiper swiper-4">
+        <div class="swiper-wrapper">
+            @for($i = 0; $i < 4; $i++)
+            @foreach($news->reverse() as $new)
+            <div class="swiper-slide">
+                <a href="{{ route('news_view',['slug' => $new -> slug]) }}" class="text-dark">
+                <div class="card border-0 bg-transparent text-white">
+                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
+                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <div class="card-body">
+                        <h5 class="my-2 text-capitalize">{{ $new->title }}</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            @endforeach
+            @endfor
+        </div>
+        </div>
+
+  </div>
+</section>
+<section class="space-m border-top">
+  <div class="container">
+  <div class="row">
+  <!-- <div class="col-md-10 offset-md-1"> -->
+  <div class="col-md-12">
+    <h1 class="mb-4 text-center">Our Catalog</h1>
+    <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Movies</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Miniseries</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Tv Commercials</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Music</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Books</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Documentary</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-transparent">
+      <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">Tv Program</h4>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  </div>
+  </div>
 </section>
 @endsection
 @section('css')
@@ -79,6 +244,50 @@
           },
           1024: {
             slidesPerView: 4,
+            // spaceBetween: 50,
+          },
+        },
+        navigation: {
+          nextEl: ".next",
+          prevEl: ".prev",
+        },
+    });
+    const swiper3 = new Swiper('.swiper-3', {
+        slidesPerView: 1,
+        spaceBetween: 15,
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            // spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            // spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 3,
+            // spaceBetween: 50,
+          },
+        },
+        navigation: {
+          nextEl: ".next",
+          prevEl: ".prev",
+        },
+    });
+    const swiper4 = new Swiper('.swiper-4', {
+        slidesPerView: 1,
+        spaceBetween: 15,
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            // spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            // spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 3,
             // spaceBetween: 50,
           },
         },
