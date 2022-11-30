@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap');
 body {
     font-size: .875rem;
-    font-family: 'Open Sans' !important;
+    font-family: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Sora', 'Helvetica Neue', sans-serif;
     background-color: #fff;
   }
   
@@ -32,7 +32,7 @@ body {
   }
   
   .sidebar .nav-link {
-    font-family: 'Noto Sans';
+    /* font-family: 'Noto Sans'; */
     color: #333;
   }
   
@@ -110,7 +110,7 @@ body {
   }
 
   .ql-container {
-    font-family: 'Open Sans' !important;
+    font-family: 'Sora' !important;
     height: 60vh !important;
     font-size: .875rem !important;
   }
@@ -133,8 +133,9 @@ th {
 
 .btn {
   text-transform: uppercase;
-  border-radius: 0;
+  border-radius: 50em;
   font-size: 13px;
+  font-weight: 600;
   /* width: 200px; */
   font-family: 'Noto Sans';
 }

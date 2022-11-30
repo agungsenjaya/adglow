@@ -1,7 +1,29 @@
 @extends('layouts.index')
 @section('content')
+<div class="position-relative">
+    <img src="{{ url('') .'/'. $data->img_background }}" alt="" width="100%">
+    <div class="to-bottom px-3 pb-5 text-center">
+        <div>
+            <img src="{{ url('').'/'. $data->img_logo }}" alt="" width="30%">
+            <h5 class="text-uppercase font-noto fw-semibold text-white">IN CINEMAS NOW</h5>
+            <button class="btn btn-light"><i class="bi-play-fill me-2"></i>Watch Trailer</button>
+        </div>
+    </div>
+</div>
 <section class="space-m">
     <div class="container">
+    <div class="row mb-5 justify-content-center">
+            <div class="col-md-8">
+                <div class="position-relative">
+                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <div class="to-center text-center">
+                        <a href="javascript:void(0)" class="text-white">
+                            <i class="bi-play-fill display-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mb-5">
             <div class="col-md-5">
                 <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
@@ -40,38 +62,73 @@
                         @endif
                     </p>
                 </div>
-                <div class="">
-                <p class="text-black">Share</p>
-                <div class="text-center">
-                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                        <a class="a2a_button_facebook"></a>
-                        <a class="a2a_button_twitter"></a>
-                        <a class="a2a_button_telegram"></a>
-                        <a class="a2a_button_whatsapp"></a>
-                    </div>
-                </div>
-                </div>
-
             </div>
             </div>
         </div>
 
-        <div class="row mb-5 justify-content-center">
-            <div class="col-md-8">
-                <h3 class="mb-3 fw-bold text-black">Trailer Miniseries</h3>
-                <div class="position-relative">
-                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
-                    <div class="to-center text-center">
-                        <a href="javascript:void(0)" class="btn-icon bg-white text-black">
-                            <i class="bi-play-fill"></i>
-                        </a>
+        <div class="mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="media">
+                            <i class="text-black bi-calendar-event h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Release Date</h5>
+                                @if($data->tgl_tayang)
+                                {{ $data->tgl_tayang }}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-clock h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Duration</h5>
+                                @if($data->duration)
+                                {{ $data->duration }}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-share h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Share</h5>
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">Share link</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4">
+                        <div class="media">
+                            <i class="text-black bi-activity h3 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Genre</h5>
+                                <p class="text-capitalize">
+                                @php
+                        $genre = json_decode($data->genre_id);
+                        @endphp
+                        @foreach($genre as $gen)
+                        @php
+                        $ge = App\Genre::find($gen);
+                        @endphp
+                        {{ $ge->title }}
+                        @endforeach
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="">
-            <h3 class="mb-3 text-black fw-bold">Highlight Miniseries</h3>
+            <!-- <h3 class="mb-3 fw-bold text-black">Highlight miniseries</h3> -->
             <div class="swiper swiper-1">
   <div class="swiper-wrapper">
     @php
@@ -102,16 +159,16 @@
 </section>
 <section class="space-m">
     <div class="container">
-    <h3 class="mb-3 text-black fw-bold">Recomended Movies</h3>
+    <h3 class="mb-3 text-black fw-bold">Recomended Miniseries</h3>
     <div class="swiper swiper-2">
         <div class="swiper-wrapper">
-            @foreach($miniseries->reverse() as $move)
+            @foreach($miniseries->reverse() as $mini)
             <div class="swiper-slide">
-                <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
+                <a href="{{ route('miniseries_view',['slug' => $mini -> slug]) }}" class="text-dark">
                 <div class="card border-0">
-                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
+                    <img src="{{ url('').'/'.$mini->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
-                        <h5 class="my-2 text-capitalize text-black">{{ $move->title }}</h5>
+                        <h5 class="my-2 text-capitalize text-black">{{ $mini->title }}</h5>
                     </div>
                 </div>
                 </a>
@@ -121,6 +178,27 @@
         </div>
     </div>
 </section>
+
+<div class="modal" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 ms-auto" id="shareModalLabel">Share Now</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="text-center d-flex justify-content-center">
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_telegram"></a>
+                <a class="a2a_button_whatsapp"></a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/swiper.css') }}"/>

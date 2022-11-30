@@ -1,7 +1,29 @@
 @extends('layouts.index')
 @section('content')
+<div class="position-relative">
+    <img src="{{ url('') .'/'. $data->img_background }}" alt="" width="100%">
+    <div class="to-bottom px-3 pb-5 text-center">
+        <div>
+            <img src="{{ url('').'/'. $data->img_logo }}" alt="" width="30%">
+            <h5 class="text-uppercase font-noto fw-semibold text-white">IN CINEMAS NOW</h5>
+            <button class="btn btn-light"><i class="bi-play-fill me-2"></i>Watch Trailer</button>
+        </div>
+    </div>
+</div>
 <section class="space-m">
     <div class="container">
+    <div class="row mb-5 justify-content-center">
+            <div class="col-md-8">
+                <div class="position-relative">
+                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <div class="to-center text-center">
+                        <a href="javascript:void(0)" class="text-white">
+                            <i class="bi-play-fill display-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mb-5">
             <div class="col-md-5">
                 <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
@@ -77,33 +99,29 @@
                         <div class="media">
                             <i class="text-black bi-share h3 me-3"></i>
                             <div class="media-body">
-                                <h5 class="fw-bold text-black">Share Movies</h5>
+                                <h5 class="fw-bold text-black">Share</h5>
                                 <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">Share link</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 border-start ps-4">
                         <div class="media">
-                            <i class="text-black bi-link-45deg h3 me-3"></i>
+                            <i class="text-black bi-activity h3 me-3"></i>
                             <div class="media-body">
-                                <h5 class="fw-bold text-black">Trailer Movies</h5>
-                                <a href="javascript:void(0)">Visit link</a>
+                                <h5 class="fw-bold text-black">Genre</h5>
+                                <p class="text-capitalize">
+                                @php
+                        $genre = json_decode($data->genre_id);
+                        @endphp
+                        @foreach($genre as $gen)
+                        @php
+                        $ge = App\Genre::find($gen);
+                        @endphp
+                        {{ $ge->title }}
+                        @endforeach
+                                </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-5 justify-content-center">
-            <div class="col-md-8">
-                <!-- <h3 class="mb-3 fw-bold text-black text-center">Trailer Movies</h3> -->
-                <div class="position-relative">
-                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
-                    <div class="to-center text-center">
-                        <a href="javascript:void(0)" class="text-white">
-                            <i class="bi-play-circle-fill display-4"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -165,11 +183,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="shareModalLabel">Share Movies</h1>
+        <h1 class="modal-title fs-5 ms-auto" id="shareModalLabel">Share Now</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="text-center justify-content-center">
+      <div class="text-center d-flex justify-content-center">
             <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
                 <a class="a2a_button_facebook"></a>
                 <a class="a2a_button_twitter"></a>

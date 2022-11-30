@@ -17,14 +17,14 @@
     </div>
   </div>
   <div class="to-top z-index-1">
-    <div class="grad-hero" style="height:180px"></div>
+    <div class="grad-top" style="height:180px"></div>
   </div>
   <div class="swiper-pagination"></div>
 </div>
 </section>
 <section class="space-m">
     <div class="container">
-        <h1 class="mb-4">Now Playing</h1>
+        <h3 class="mb-4 fw-bold">Movies</h3>
         <div class="swiper swiper-2">
         <div class="swiper-wrapper">
             @for($i = 0; $i < 4; $i++)
@@ -57,12 +57,12 @@
         </div>
     </div>
 </section>
-<section class="space-m border-top">
+<section class="space-m ">
   <div class="container">
     <div class="row">
       <div class="col-md-3 align-self-center">
       <div class="pe-5">
-      <h1>Upcomming For You</h1>
+      <h3 class="fw-bold">Upcomming For You</h3>
     <p>Will be live for you soon</p>
     <ul class="nav nav-bottom mt-2">
   <li class="nav-item me-3">
@@ -90,16 +90,13 @@
                     <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
                     <img src="https://dummyimage.com/600x900" alt="" width="100%" class="rounded">
                     <div class="card-body">
+                      <div class="d-flex justify-content-between">
                     <div class="badge bg-white text-dark text-capitalize">
-                        @php
-                        $genre = json_decode($move->genre_id);
-                        @endphp
-                        @foreach($genre as $gen)
-                        @php
-                        $ge = App\Genre::find($gen);
-                        @endphp
-                        {{ $ge->title }}
-                        @endforeach
+                        Miniseries
+                      </div>
+                      <div>
+                        {{ $move->tgl_tayang }}
+                      </div>
                       </div>
                         <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
                     </div>
@@ -115,9 +112,9 @@
     </div>
   </div>
 </section>
-<section class="space-m border-top">
+<section class="space-m ">
   <div class="container">
-    <h1>Latest News</h1>
+    <h3 class="fw-bold">Latest News</h3>
     <p class="mb-4">Get the latest news about movies and many more</p>
 
     <div class="swiper swiper-4">
@@ -142,18 +139,18 @@
 
   </div>
 </section>
-<section class="space-m border-top">
+<section class="space-m ">
   <div class="container">
   <div class="row">
   <!-- <div class="col-md-10 offset-md-1"> -->
   <div class="col-md-12">
-    <h1 class="mb-4 text-center">Our Catalog</h1>
+    <h3 class="mb-4 text-center fw-bold">Our Catalog</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
   <div class="col">
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Movies</h4>
+        <h4 class="card-title fw-light">Movies</h4>
       </div>
     </div>
   </div>
@@ -161,7 +158,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Miniseries</h4>
+        <h4 class="card-title fw-light">Miniseries</h4>
       </div>
     </div>
   </div>
@@ -169,7 +166,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Tv Commercials</h4>
+        <h4 class="card-title fw-light">Tv Commercials</h4>
       </div>
     </div>
   </div>
@@ -177,7 +174,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Music</h4>
+        <h4 class="card-title fw-light">Music</h4>
       </div>
     </div>
   </div>
@@ -185,7 +182,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Books</h4>
+        <h4 class="card-title fw-light">Books</h4>
       </div>
     </div>
   </div>
@@ -193,7 +190,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Documentary</h4>
+        <h4 class="card-title fw-light">Documentary</h4>
       </div>
     </div>
   </div>
@@ -201,7 +198,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title">Tv Program</h4>
+        <h4 class="card-title fw-light">Tv Program</h4>
       </div>
     </div>
   </div>

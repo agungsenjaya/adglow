@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap');
 html,body {
-    font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Sora', 'Helvetica Neue', sans-serif;
     background-color: #fff !important;
     color: rgba(0,0,0,0.7);
-    /* letter-spacing: .3px; */
 }
 .nav-top {
     font-family: 'Noto Sans';
@@ -39,7 +38,10 @@ html,body {
     right: 0;
     bottom: 0;
 }
-.grad-hero {
+.grad-top {
+    background-image: linear-gradient(0deg,#0000 5%,#000);
+}
+.grad-bottom {
     background-image: linear-gradient(0deg,#0000 5%,#000);
 }
 .z-index-1 {
@@ -77,8 +79,8 @@ html,body {
 .btn {
     width: 200px;
     border-radius:50em;
-    text-transform: capitalize;
-    /* font-family: 'Noto Sans'; */
+    text-transform: uppercase;
+    font-family: 'Noto Sans';
     font-weight: 700;
     letter-spacing: normal;
 }
@@ -150,4 +152,13 @@ flex: 1;
 
 .img-white {
     filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.nav-category > li  > button {
+    color: #fff;
+}
+
+.nav-category > li  > button.active {
+    color: #000 !important;
+    background-color: #fff !important;
 }
