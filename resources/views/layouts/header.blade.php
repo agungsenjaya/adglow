@@ -19,22 +19,22 @@
           <a class="nav-link" href="{{ route('miniseries') }}">Miniseries</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tv Commercials</a>
+          <a class="nav-link" href="{{ route('commercial') }}">Tv Commercials</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Music</a>
+          <a class="nav-link" href="{{ route('music') }}">Music</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Book</a>
+          <a class="nav-link" href="{{ route('book') }}">Book</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Documentary & Tv Program</a>
+          <a class="nav-link" href="{{ route('documentary') }}">Documentary & Tv Program</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="{{ route('about') }}">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">News</a>
+          <a class="nav-link" href="{{ route('news') }}">News</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-top d-none">

@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 26, 2022 at 03:39 PM
--- Server version: 8.0.30
--- PHP Version: 7.4.32
+-- Host: localhost
+-- Generation Time: Dec 04, 2022 at 06:20 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `books` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_tayang` date DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `books` (
   `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -58,17 +58,17 @@ INSERT INTO `books` (`id`, `title`, `img_clip`, `tgl_tayang`, `creator`, `price`
 --
 
 CREATE TABLE `commercials` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_highlight` json DEFAULT NULL,
+  `img_highlight` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`img_highlight`)),
   `tgl_tayang` date DEFAULT NULL,
   `producer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `director` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -90,17 +90,18 @@ INSERT INTO `commercials` (`id`, `title`, `img_clip`, `img_highlight`, `tgl_taya
 --
 
 CREATE TABLE `documentaries` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_highlight` json DEFAULT NULL,
+  `img_highlight` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`img_highlight`)),
   `tgl_tayang` date DEFAULT NULL,
   `producer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `director` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `category` enum('documentary','program') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -111,9 +112,9 @@ CREATE TABLE `documentaries` (
 -- Dumping data for table `documentaries`
 --
 
-INSERT INTO `documentaries` (`id`, `title`, `img_clip`, `img_highlight`, `tgl_tayang`, `producer`, `director`, `artist`, `trailer`, `link`, `description`, `slug`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'documentary satu', 'img/documentary/1669476720600x400.png', '[\"img/documentary/16694767201000x600 (1).png\", \"img/documentary/16694767201000x600.png\"]', '2022-11-24', 'aji fauzi', 'hanung bamantyo', NULL, 'https://www.youtube.com/watch?v=py40H5Ib85g', NULL, '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.</p>', 'documentary-satu', '2022-11-26 15:32:00', '2022-11-26 15:32:00', NULL),
-(2, 'documentary dua', 'img/documentary/1669476947600x400.png', '[\"img/documentary/16694769471000x600 (1).png\", \"img/documentary/16694769471000x600.png\"]', '2022-11-30', NULL, NULL, NULL, NULL, NULL, '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.</p>', 'documentary-dua', '2022-11-26 15:35:47', '2022-11-26 15:35:47', NULL);
+INSERT INTO `documentaries` (`id`, `title`, `img_clip`, `img_highlight`, `tgl_tayang`, `producer`, `director`, `artist`, `trailer`, `link`, `category`, `description`, `slug`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'documentary satu', 'img/documentary/1669476720600x400.png', '[\"img/documentary/16694767201000x600 (1).png\", \"img/documentary/16694767201000x600.png\"]', '2022-11-24', 'aji fauzi', 'hanung bamantyo', NULL, 'https://www.youtube.com/watch?v=py40H5Ib85g', NULL, 'documentary', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.</p>', 'documentary-satu', '2022-11-26 15:32:00', '2022-11-26 15:32:00', NULL),
+(2, 'documentary dua', 'img/documentary/1669476947600x400.png', '[\"img/documentary/16694769471000x600 (1).png\", \"img/documentary/16694769471000x600.png\"]', '2022-11-30', NULL, NULL, NULL, NULL, NULL, 'program', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae laudantium neque ipsam rerum reprehenderit animi consectetur unde minus eaque sequi rem tenetur consequuntur ipsa, eligendi officia consequatur amet accusantium. Expedita.</p>', 'documentary-dua', '2022-11-26 15:35:47', '2022-11-26 15:35:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -122,12 +123,12 @@ INSERT INTO `documentaries` (`id`, `title`, `img_clip`, `img_highlight`, `tgl_ta
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -137,7 +138,7 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `genres` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -161,9 +162,9 @@ INSERT INTO `genres` (`id`, `title`, `slug`, `created_at`, `updated_at`, `delete
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -190,13 +191,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `miniseries` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_background` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_highlight` json DEFAULT NULL,
-  `genre_id` json DEFAULT NULL,
+  `img_highlight` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`img_highlight`)),
+  `genre_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`genre_id`)),
   `tgl_tayang` date DEFAULT NULL,
   `episode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `season` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -204,8 +205,8 @@ CREATE TABLE `miniseries` (
   `director` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` longtext COLLATE utf8mb4_unicode_ci,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `link` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -227,21 +228,21 @@ INSERT INTO `miniseries` (`id`, `title`, `img_logo`, `img_background`, `img_clip
 --
 
 CREATE TABLE `movies` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_background` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_highlight` json DEFAULT NULL,
-  `genre_id` json DEFAULT NULL,
+  `img_highlight` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`img_highlight`)),
+  `genre_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`genre_id`)),
   `tgl_tayang` date DEFAULT NULL,
   `producer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `director` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` json DEFAULT NULL,
+  `link` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`link`)),
   `duration` time DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -263,15 +264,15 @@ INSERT INTO `movies` (`id`, `title`, `img_logo`, `img_background`, `img_clip`, `
 --
 
 CREATE TABLE `music` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_tayang` date DEFAULT NULL,
   `creator` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` json DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `link` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`link`)),
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -293,7 +294,7 @@ INSERT INTO `music` (`id`, `title`, `img_clip`, `tgl_tayang`, `creator`, `artist
 --
 
 CREATE TABLE `news` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_clip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -330,7 +331,7 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -432,67 +433,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `commercials`
 --
 ALTER TABLE `commercials`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `documentaries`
 --
 ALTER TABLE `documentaries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `miniseries`
 --
 ALTER TABLE `miniseries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `music`
 --
 ALTER TABLE `music`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

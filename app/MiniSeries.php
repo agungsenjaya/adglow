@@ -11,4 +11,5 @@ class MiniSeries extends Model
 
     protected $table = 'miniseries';
     protected $guarded = ['miniseries'];
+    protected $dates = ['tgl_tayang'];
 }

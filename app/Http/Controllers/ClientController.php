@@ -17,6 +17,11 @@ class ClientController extends Controller
     {
         return view('client.home')->with('movies', Movie::all())->with('news', News::all());
     }
+    
+    public function about()
+    {
+        return view('client.about');
+    }
 
     public function movies()
     {

@@ -162,3 +162,12 @@ flex: 1;
     color: #000 !important;
     background-color: #fff !important;
 }
+
+.list-link > li {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.font-10 {
+    font-size: 10px;
+}

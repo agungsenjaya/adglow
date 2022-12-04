@@ -11,4 +11,5 @@ class Movie extends Model
     
     protected $table = 'movies';
     protected $guarded = ['movies'];
+    protected $dates = ['tgl_tayang'];
 }

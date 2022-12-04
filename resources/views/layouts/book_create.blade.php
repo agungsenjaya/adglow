@@ -30,12 +30,12 @@ $no = 1;
               <input type="date" class="form-control" name="tgl_tayang">
             </div>
             <div class="col">
-              <label class="form-label">Creator (Optional)</label>
+              <label class="form-label">Writter (Optional)</label>
               <input type="text" class="form-control" name="creator">
             </div>
           </div>
           <div class="mb-3  ">
-              <label class="form-label">Link Pembelian (Optional)</label>
+              <label class="form-label">Link Details (Optional)</label>
               <input type="text" class="form-control" name="link">
             </div>
           <div class="mb-3">

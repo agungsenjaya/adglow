@@ -11,4 +11,5 @@ class Documentary extends Model
 
     protected $table = 'documentaries';
     protected $guarded = ['documentaries'];
+    protected $dates = ['tgl_tayang'];
 }

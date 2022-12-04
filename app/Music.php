@@ -11,4 +11,5 @@ class Music extends Model
 
     protected $table = 'music';
     protected $guarded = ['music'];
+    protected $dates = ['tgl_tayang'];
 }

@@ -657,6 +657,7 @@ class AdminController extends Controller
 
             $data = Documentary::create([
                 'title' => $request->title,
+                'category' => $request->category,
                 'img_clip' => 'img/documentary/' . $img_clip_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
@@ -664,6 +665,7 @@ class AdminController extends Controller
                 'director' => $request->director ? $request->director : NULL,
                 'trailer' => $request->trailer ? $request->trailer : NULL,
                 'link' => $request->link ? $request->link : NULL,
+                'artist' => $request->artist ? $request->artist : NULL,
                 'description' => $request->description ? $request->description : NULL,
                 'slug' => Str::slug($request->title),
             ]);
@@ -692,6 +694,8 @@ class AdminController extends Controller
             }
 
             $data->title = $request->title;
+            $data->category = $request->category;
+            $data->artist = $request->artist ? $request->artist : NULL;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
             $data->director = $request->director ? $request->director : NULL;
             $data->producer = $request->producer ? $request->producer : NULL;

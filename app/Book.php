@@ -11,4 +11,5 @@ class Book extends Model
 
     protected $table = 'books';
     protected $guarded = ['books'];
+    protected $dates = ['tgl_tayang'];
 }

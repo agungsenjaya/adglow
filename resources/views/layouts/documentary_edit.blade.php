@@ -24,6 +24,14 @@ $no = 1;
               <input type="file" class="form-control" name="img_clip">
             </div>
             </div>
+            <div class="mb-3">
+              <label class="form-label">Category</label>
+              <select name="category" class="form-select" required>
+                <option value="">Select Option</option>
+                <option value="documentary" {{ $data->category == 'documentary' ? 'selected' : '' }}>Documentary</option>
+                <option value="program" {{ $data->category == 'program' ? 'selected' : '' }}>Program</option>
+              </select>
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Tanggal Tayang (Optional)</label>
@@ -37,6 +45,10 @@ $no = 1;
               <label class="form-label">Director (Optional)</label>
               <input type="text" class="form-control" name="director" value="{{ $data->director ? $data->director : NULL  }}">
             </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Artist (Optional)</label>
+            <input type="text" class="form-control" name="artist" value="{{ $data->artist ? $data->artist : NULL }}">
           </div>
             <div class="row mb-3">
             <div class="col">

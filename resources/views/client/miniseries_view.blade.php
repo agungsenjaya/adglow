@@ -1,15 +1,32 @@
 @extends('layouts.index')
 @section('content')
 <div class="position-relative">
-    <img src="{{ url('') .'/'. $data->img_background }}" alt="" width="100%">
+    <img src="{{ url('').'/'. $data->img_background }}" alt="" width="100%">
     <div class="to-bottom px-3 pb-5 text-center">
         <div>
-            <img src="{{ url('').'/'. $data->img_logo }}" alt="" width="30%">
-            <h5 class="text-uppercase font-noto fw-semibold text-white">IN CINEMAS NOW</h5>
+            <div>
+                <img src="{{ url('').'/'. $data->img_logo }}" alt="" width="30%">
+            </div>
+            <!-- <h5 class="text-uppercase font-noto fw-semibold text-white">IN CINEMAS NOW</h5> -->
             <button class="btn btn-light"><i class="bi-play-fill me-2"></i>Watch Trailer</button>
+            <!-- @if($data->link)
+            <a href="{{ $data->link }}" target="_blank" class="btn btn-light ms-2">Watch Now</a href="{{ $data->link }}">
+            @endif -->
         </div>
     </div>
 </div>
+@if($data->link)
+<section class="py-4 bg-black text-white">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <p class="text-center text-capitalize">Watch the movie now via the link below</p>
+            <a href="{{ $data->link }}" class="btn btn-outline-light" target="_blank">Watch Now</a>
+        </div>
+        </div>
+    </div>
+</section>
+@endif
 <section class="space-m">
     <div class="container">
     <div class="row mb-5 justify-content-center">
@@ -26,11 +43,11 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-5">
-                <img src="{{ url('') .'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
+                <img src="{{ url('').'/'. $data->img_clip }}" alt="" width="100%" class="rounded">
             </div>
             <div class="col-md-5 align-self-center">
             <div class="px-4">
-                <h3 class="text-capitalize fw-bold mb-3 text-black">{{ $data->title }}</h3>
+                <h4 class="text-capitalize fw-bold mb-3 text-black">{{ $data->title }}</h4>
                 {!! $data->description !!}
                 <div class="pb-3">
                     <p class="text-black">Directed By</p>
@@ -71,11 +88,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-3">
                         <div class="media">
-                            <i class="text-black bi-calendar-event h3 me-3"></i>
+                            <i class="text-black bi-calendar-event h4 me-3"></i>
                             <div class="media-body">
                                 <h5 class="fw-bold text-black">Release Date</h5>
                                 @if($data->tgl_tayang)
-                                {{ $data->tgl_tayang }}
+                                {{ $data->tgl_tayang->format('d / m / Y') }}
                                 @else
                                 -
                                 @endif
@@ -84,11 +101,11 @@
                     </div>
                     <div class="col-md-3 border-start ps-4">
                         <div class="media">
-                            <i class="text-black bi-clock h3 me-3"></i>
+                            <i class="text-black bi-layers h4 me-3"></i>
                             <div class="media-body">
-                                <h5 class="fw-bold text-black">Duration</h5>
-                                @if($data->duration)
-                                {{ $data->duration }}
+                                <h5 class="fw-bold text-black">Episode</h5>
+                                @if($data->episode)
+                                {{ $data->episode }}
                                 @else
                                 -
                                 @endif
@@ -97,7 +114,20 @@
                     </div>
                     <div class="col-md-3 border-start ps-4">
                         <div class="media">
-                            <i class="text-black bi-share h3 me-3"></i>
+                            <i class="text-black bi-star h4 me-3"></i>
+                            <div class="media-body">
+                                <h5 class="fw-bold text-black">Season</h5>
+                                @if($data->season)
+                                {{ $data->season }}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border-start ps-4 d-none">
+                        <div class="media">
+                            <i class="text-black bi-share h4 me-3"></i>
                             <div class="media-body">
                                 <h5 class="fw-bold text-black">Share</h5>
                                 <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#shareModal">Share link</a>
@@ -106,7 +136,7 @@
                     </div>
                     <div class="col-md-3 border-start ps-4">
                         <div class="media">
-                            <i class="text-black bi-activity h3 me-3"></i>
+                            <i class="text-black bi-activity h4 me-3"></i>
                             <div class="media-body">
                                 <h5 class="fw-bold text-black">Genre</h5>
                                 <p class="text-capitalize">
@@ -128,7 +158,7 @@
         </div>
 
         <div class="">
-            <!-- <h3 class="mb-3 fw-bold text-black">Highlight miniseries</h3> -->
+            <!-- <h4 class="mb-3 fw-bold text-black">Highlight miniseries</h4> -->
             <div class="swiper swiper-1">
   <div class="swiper-wrapper">
     @php
@@ -159,7 +189,7 @@
 </section>
 <section class="space-m">
     <div class="container">
-    <h3 class="mb-3 text-black fw-bold">Recomended Miniseries</h3>
+    <h4 class="mb-3 text-black fw-bold">Recomended Miniseries</h4>
     <div class="swiper swiper-2">
         <div class="swiper-wrapper">
             @foreach($miniseries->reverse() as $mini)

@@ -24,6 +24,14 @@ $no = 1;
               <input type="file" class="form-control" name="img_clip" required>
             </div>
             </div>
+            <div class="mb-3">
+              <label class="form-label">Category</label>
+              <select name="category" class="form-select" required>
+                <option value="">Select Option</option>
+                <option value="documentary">Documentary</option>
+                <option value="program">Program</option>
+              </select>
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Tanggal Tayang (Optional)</label>
@@ -37,6 +45,10 @@ $no = 1;
               <label class="form-label">Director (Optional)</label>
               <input type="text" class="form-control" name="director">
             </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Artist (Optional)</label>
+            <input type="text" class="form-control" name="artist">
           </div>
             <div class="row mb-3">
             <div class="col">
