@@ -94,8 +94,8 @@
                     <div class="badge bg-white text-dark text-capitalize">
                         Miniseries
                       </div>
-                      <div>
-                        {{ $move->tgl_tayang }}
+                      <div class="small">
+                        {{ $move->tgl_tayang->format('d / m / Y') }}
                       </div>
                       </div>
                         <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
@@ -127,6 +127,9 @@
                     <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
                     <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
                     <div class="card-body">
+                    <div class="badge bg-white text-dark text-capitalize">
+                        <i class="bi-calendar-event me-2"></i>{{ $new->created_at->format('d / m / Y') }}
+                      </div>
                         <h5 class="my-2 text-capitalize">{{ $new->title }}</h5>
                     </div>
                 </div>
@@ -145,12 +148,12 @@
   <!-- <div class="col-md-10 offset-md-1"> -->
   <div class="col-md-12">
     <h3 class="mb-4 text-center fw-bold">Our Catalog</h3>
-    <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+    <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center text-center">
   <div class="col">
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Movies</h4>
+        <h5 class="card-title fw-light">Movies</h5>
       </div>
     </div>
   </div>
@@ -158,7 +161,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Miniseries</h4>
+        <h5 class="card-title fw-light">Miniseries</h5>
       </div>
     </div>
   </div>
@@ -166,7 +169,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Tv Commercials</h4>
+        <h5 class="card-title fw-light">Tv Commercials</h5>
       </div>
     </div>
   </div>
@@ -174,7 +177,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Music</h4>
+        <h5 class="card-title fw-light">Music</h5>
       </div>
     </div>
   </div>
@@ -182,7 +185,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Books</h4>
+        <h5 class="card-title fw-light">Books</h5>
       </div>
     </div>
   </div>
@@ -190,7 +193,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Documentary</h4>
+        <h5 class="card-title fw-light">Documentary</h5>
       </div>
     </div>
   </div>
@@ -198,7 +201,7 @@
     <div class="card bg-transparent">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
       <div class="card-body">
-        <h4 class="card-title fw-light">Tv Program</h4>
+        <h5 class="card-title fw-light">Tv Program</h5>
       </div>
     </div>
   </div>

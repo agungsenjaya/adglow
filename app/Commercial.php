@@ -11,4 +11,5 @@ class Commercial extends Model
     
     protected $table = 'commercials';
     protected $guarded = ['commercials'];
+    protected $dates = ['tgl_tayang'];
 }

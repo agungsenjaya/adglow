@@ -385,6 +385,7 @@ class AdminController extends Controller
 
             $data = Commercial::create([
                 'title' => $request->title,
+                'artist' => $request->artist,
                 'img_clip' => 'img/commercial/' . $img_clip_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
@@ -429,6 +430,7 @@ class AdminController extends Controller
                 $data->img_highlight = json_encode($new_highlight);
             }
             $data->title = $request->title;
+            $data->artist = $request->artist;
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;

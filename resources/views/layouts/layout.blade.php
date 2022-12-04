@@ -24,7 +24,7 @@
     @yield('css')
 </head>
 <body>
-    <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+    <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow d-none">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 py-1 px-3 fs-6 text-center" href="{{ route('home') }}">
     <img src="{{ asset('img/logo.png') }}" alt="" width="100" class="img-white">
   </a>
@@ -44,6 +44,14 @@
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
+      <div class="text-center my-3">
+        <img src="{{ asset('img/logo.png') }}" alt="" width="70%" class="img-white">
+
+        <a class="px-5 mt-3 btn btn-light rounded-pill" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="bi-power me-3"></i>Sign out
+      </a>
+
+      </div>
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column nav-admin">
           <li class="nav-item">

@@ -22,6 +22,11 @@ class ClientController extends Controller
     {
         return view('client.about');
     }
+    
+    public function contact()
+    {
+        return view('client.contact');
+    }
 
     public function movies()
     {

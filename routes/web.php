@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::GET('/','ClientController@home')->name('index');
 Route::GET('/about','ClientController@about')->name('about');
+Route::GET('/contact','ClientController@contact')->name('contact');
 
 Route::GET('/movies','ClientController@movies')->name('movies');
 Route::GET('/movies/view/{slug}','ClientController@movies_view')->name('movies_view');

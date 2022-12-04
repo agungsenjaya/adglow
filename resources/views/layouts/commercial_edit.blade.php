@@ -25,6 +25,16 @@ $no = 1;
             </div>
             </div>
             <div class="row mb-3">
+          <div class="col">
+              <label class="form-label">Tanggal Tayang</label>
+              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang }}" required>
+            </div>
+          <div class="col">
+              <label class="form-label">Brands / Client</label>
+              <input type="text" class="form-control" name="artist" value="{{ $data->artist }}" required>
+            </div>
+            </div>
+            <div class="row mb-3">
             <div class="col">
               <label class="form-label">Trailer (Optional)</label>
               <input type="text" class="form-control" value="{{ $data->trailer ? $data->trailer : NULL }}" name="trailer">
