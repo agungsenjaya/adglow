@@ -32,8 +32,7 @@
             <div class="swiper-slide">
                 <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
                 <div class="card border-0 bg-transparent text-white">
-                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
-                    <img src="https://dummyimage.com/600x900" alt="" width="100%" class="rounded">
+                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
                       <div class="badge bg-white text-dark text-capitalize">
                         @php
@@ -54,6 +53,7 @@
             @endforeach
             @endfor
         </div>
+        <div class="white swiper-pagination position-relative"></div>
         </div>
     </div>
 </section>
@@ -65,12 +65,12 @@
       <h3 class="fw-bold">Upcomming For You</h3>
     <p>Will be live for you soon</p>
     <ul class="nav nav-bottom mt-2">
-  <li class="nav-item me-3">
+  <li class="nav-item me-3 prev-3">
     <a class="nav-link btn-icon bg-white text-center" href="javascript:void(0)">
       <i class="bi-chevron-left text-black"></i>
     </a>
   </li>
-  <li class="nav-item me-3">
+  <li class="nav-item me-3 next-3">
     <a class="nav-link btn-icon bg-white text-center" href="javascript:void(0)">
       <i class="bi-chevron-right text-black"></i>
     </a>
@@ -83,22 +83,25 @@
       <div class="swiper swiper-3">
         <div class="swiper-wrapper">
             @for($i = 0; $i < 4; $i++)
-            @foreach($movies as $move)
+            @foreach($upcomming as $upc)
             <div class="swiper-slide">
-                <a href="{{ route('movies_view',['slug' => $move -> slug]) }}" class="text-dark">
+              @if($upc->category_list == 'movie')
+                <a href="{{ route('movies_view',['slug' => $upc -> slug]) }}" class="text-dark">
+                @else
+                <a href="{{ route('miniseries_view',['slug' => $upc -> slug]) }}" class="text-dark">
+              @endif
                 <div class="card border-0 bg-transparent text-white">
-                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
-                    <img src="https://dummyimage.com/600x900" alt="" width="100%" class="rounded">
+                    <img src="{{ url('').'/'.$upc->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
                       <div class="d-flex justify-content-between">
                     <div class="badge bg-white text-dark text-capitalize">
-                        Miniseries
+                        {{ $upc->category_list }}
                       </div>
                       <div class="small">
-                        {{ $move->tgl_tayang->format('d / m / Y') }}
+                        {{ $upc->tgl_tayang->format('d / m / Y') }}
                       </div>
                       </div>
-                        <h5 class="my-2 text-capitalize">{{ $move->title }}</h5>
+                        <h5 class="my-2 text-capitalize">{{ $upc->title }}</h5>
                     </div>
                 </div>
                 </a>
@@ -124,8 +127,7 @@
             <div class="swiper-slide">
                 <a href="{{ route('news_view',['slug' => $new -> slug]) }}" class="text-dark">
                 <div class="card border-0 bg-transparent text-white">
-                    <!-- <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded"> -->
-                    <img src="https://dummyimage.com/600x400" alt="" width="100%" class="rounded">
+                    <img src="{{ url('').'/'.$move->img_clip }}" alt="" width="100%" class="rounded">
                     <div class="card-body">
                     <div class="badge bg-white text-dark text-capitalize">
                         <i class="bi-calendar-event me-2"></i>{{ $new->created_at->format('d / m / Y') }}
@@ -138,6 +140,7 @@
             @endforeach
             @endfor
         </div>
+        <div class="white swiper-pagination position-relative"></div>
         </div>
 
   </div>
@@ -212,7 +215,7 @@
 </section>
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="{{ asset('css/swiper.css') }}"/>
 <style>
     body {
         background-color: #000 !important;
@@ -247,9 +250,9 @@
             // spaceBetween: 50,
           },
         },
-        navigation: {
-          nextEl: ".next",
-          prevEl: ".prev",
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
     });
     const swiper3 = new Swiper('.swiper-3', {
@@ -270,8 +273,8 @@
           },
         },
         navigation: {
-          nextEl: ".next",
-          prevEl: ".prev",
+          nextEl: ".next-3",
+          prevEl: ".prev-3",
         },
     });
     const swiper4 = new Swiper('.swiper-4', {
@@ -291,9 +294,9 @@
             // spaceBetween: 50,
           },
         },
-        navigation: {
-          nextEl: ".next",
-          prevEl: ".prev",
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
     });
 </script>

@@ -85,5 +85,10 @@
     
     var a2a_config = a2a_config || {};
     a2a_config.icon_color = "#000,#fff";
+
+    let center = $('.ql-align-center');
+    if(center) {
+        $('.ql-align-center').addClass('d-flex justify-content-center');
+    }
 </script>
 @endsection

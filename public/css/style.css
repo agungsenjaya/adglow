@@ -56,6 +56,14 @@ html,body {
     width: 5em !important;
     border-radius: 50em !important;
 }
+.white > .swiper-pagination-bullet {
+    background: #fff !important;
+}
+.white > .swiper-pagination-bullet-active {
+    background: #fff !important;
+    width: 5em !important;
+    border-radius: 50em !important;
+}
 .space-m {
     padding-top: 40px;
     padding-bottom: 40px;

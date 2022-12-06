@@ -15,7 +15,22 @@ class ClientController extends Controller
 {
     public function home()
     {
-        return view('client.home')->with('movies', Movie::all())->with('news', News::all());
+        $upcomming = [];
+        $movie = Movie::where('category','upcomming')->get();
+        if($movie){
+            foreach ($movie as $movi) {
+                $movi->category_list = 'movie';
+                array_push($upcomming, $movi);
+            };
+        }
+        $miniseries = MiniSeries::where('category','upcomming')->get();
+        if($miniseries){
+            foreach ($miniseries as $mini) {
+                $mini->category_list = 'miniseries';
+                array_push($upcomming, $mini);
+            };
+        }
+        return view('client.home',compact('upcomming'))->with('movies', Movie::all())->with('news', News::all());
     }
     
     public function about()

@@ -39,7 +39,7 @@
         </div>
         <div>
         <h4 class="fw-bold text-black mb-3">Our Catalog</h4>
-        <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+        <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center text-center">
   <div class="col">
     <div class="card bg-transparent border-0">
       <img src="https://dummyimage.com/500" class="card-img-top" alt="...">
