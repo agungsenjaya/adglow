@@ -4,38 +4,38 @@
       <div class="col-md-4">
       <ul class="nav flex-column nav-bottom">
             <li class="nav-item">
-          <a class="nav-link" href="#">Movies</a>
+          <a class="nav-link" href="{{ route('movies') }}">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Miniseries</a>
+          <a class="nav-link" href="{{ route('miniseries') }}">Miniseries</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tv Commercials</a>
+          <a class="nav-link" href="{{ route('commercial') }}">Tv Commercials</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Music</a>
+          <a class="nav-link" href="{{ route('music') }}">Music</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Documentary & Tv Program</a>
+          <a class="nav-link" href="{{ route('documentary') }}">Documentary & Tv Program</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Book</a>
+          <a class="nav-link" href="{{ route('book') }}">Book</a>
         </li>
             </ul>
       </div>
       <div class="col-md-4">
       <ul class="nav flex-column nav-bottom">
             <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="{{ route('index') }}">Home</a>
         </li>
             <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link" href="{{ route('about') }}">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">News</a>
+          <a class="nav-link" href="{{ route('news') }}">News</a>
         </li>
             </ul>
       </div>

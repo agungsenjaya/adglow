@@ -37,6 +37,14 @@ $no = 1;
                 @endforeach
               </select>
             </div>
+            <div class="mb-3">
+              <label class="form-label">Category (Optional)</label>
+              <select name="category" class="form-select w-100">
+                <option value="">Select Option</option>
+                <option value="playing" {{ $data->category == 'playing' ? 'selected' : NULL }}>Now Playing</option>
+                <option value="upcomming" {{ $data->category == 'upcomming' ? 'selected' : NULL }}>Upcomming</option>
+              </select>
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Images Logo</label>
@@ -53,8 +61,8 @@ $no = 1;
             </div>
             <div class="row mb-3">
             <div class="col">
-              <label class="form-label">Tanggal Tayang</label>
-              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang }}" required>
+              <label class="form-label">Tanggal Tayang (Optional)</label>
+              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang ? $data->tgl_tayang->format('Y-m-d') : NULL }}">
             </div>
             <div class="col">
               <label class="form-label">Producer</label>

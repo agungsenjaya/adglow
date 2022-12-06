@@ -37,7 +37,7 @@ $no = 1;
                 <tr>
                   <td>{{ counTing($no++) }}</td>
                   <td class="text-capitalize">{{ $mini->title }}</td>
-                  <td>{{ $mini->tgl_tayang ? $mini->tgl_tayang : '-' }}</td>
+                  <td>{{ $mini->tgl_tayang ? $mini->tgl_tayang->format('d/m/Y') : '-' }}</td>
                   <td class="text-capitalize">{{ $mini->director }}</td>
                   <td class="text-capitalize">{{ $mini->producer }}</td>
                   <td>

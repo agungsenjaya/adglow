@@ -27,7 +27,7 @@ $no = 1;
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Tanggal Rilis (Optional)</label>
-              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang ? $data->tgl_tayang : NULL }}">
+              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang ? $data->tgl_tayang->format('Y-m-d'): NULL }}">
             </div>
             <div class="col">
               <label class="form-label">Writter (Optional)</label>

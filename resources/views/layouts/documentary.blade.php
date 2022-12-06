@@ -39,7 +39,7 @@ $no = 1;
                   <td class="text-capitalize">{{ $doc->title }}</td>
                   <td class="text-capitalize">{{ $doc->director ? $doc->director : '-' }}</td>
                   <td class="text-capitalize">{{ $doc->producer ? $doc->producer : '-' }}</td>
-                  <td>{{ $doc->tgl_tayang ? $doc->tgl_tayang : '-' }}</td>
+                  <td>{{ $doc->tgl_tayang ? $doc->tgl_tayang->format('d/m/Y') : '-' }}</td>
                   <td>
                       <div class="dropdown ">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">

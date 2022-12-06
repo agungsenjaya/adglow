@@ -26,8 +26,8 @@ $no = 1;
             </div>
             <div class="row mb-3">
           <div class="col">
-              <label class="form-label">Tanggal Tayang</label>
-              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang }}" required>
+              <label class="form-label">Tanggal Tayang (Optional)</label>
+              <input type="date" class="form-control" name="tgl_tayang" value="{{ $data->tgl_tayang->format('Y-m-d') }}">
             </div>
           <div class="col">
               <label class="form-label">Brands / Client</label>

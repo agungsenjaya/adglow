@@ -27,6 +27,14 @@ $no = 1;
                 @endforeach
               </select>
             </div>
+            <div class="mb-3">
+              <label class="form-label">Category (Optional)</label>
+              <select name="category" class="form-select w-100">
+                <option value="">Select Option</option>
+                <option value="playing">Now Playing</option>
+                <option value="upcomming">Upcomming</option>
+              </select>
+            </div>
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Images Logo</label>

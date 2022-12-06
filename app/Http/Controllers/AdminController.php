@@ -126,6 +126,7 @@ class AdminController extends Controller
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'genre_id' => $request->genre_id ? $request->genre_id : NULL,
                 'tgl_tayang' => $request->tgl_tayang ? $request->tgl_tayang : NULL,
+                'category' => $request->category ? $request->category : NULL,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
                 'director' => $request->director,
@@ -191,6 +192,7 @@ class AdminController extends Controller
             $data->tgl_tayang = $request->tgl_tayang ? $request->tgl_tayang : NULL;
             $data->producer = $request->producer;
             $data->duration = $request->duration ? $request->duration : NULL;
+            $data->category = $request->category ? $request->category : NULL;
             $data->director = $request->director;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
@@ -261,6 +263,7 @@ class AdminController extends Controller
                 'img_logo' => 'img/miniseries/' . $img_logo_new,
                 'img_highlight' => count($new_highlight) ? json_encode($new_highlight) : NULL,
                 'tgl_tayang' => $request->tgl_tayang,
+                'category' => $request->category ? $request->category : NULL,
                 'producer' => $request->producer,
                 'duration' => $request->duration ? $request->duration : NULL,
                 'director' => $request->director,
@@ -327,6 +330,7 @@ class AdminController extends Controller
             $data->tgl_tayang = $request->tgl_tayang;
             $data->producer = $request->producer;
             $data->director = $request->director;
+            $data->category = $request->category ? $request->category : NULL;
             $data->artist = $request->artist ? $request->artist : NULL;
             $data->trailer = $request->trailer ? $request->trailer : NULL;
             $data->episode = $request->episode ? $request->episode : NULL;
@@ -689,7 +693,7 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($valid)->withInput();
         }else{
             if ($request->hasFile('img_clip')) {
-                $img_clip = $request->img;
+                $img_clip = $request->img_clip;
                 $img_clip_new = time().$img_clip->getClientOriginalName();
                 $img_clip->move('img/documentary', $img_clip_new);
                 $data->img_clip = 'img/documentary/' . $img_clip_new;

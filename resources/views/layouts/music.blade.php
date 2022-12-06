@@ -42,7 +42,7 @@ $no = 1;
                   <td class="text-capitalize">{{ $musi->title }}</td>
                   <td class="text-capitalize">{{ $musi->artist ? $musi->artist : '-' }}</td>
                   <td class="text-capitalize">{{ $musi->creator ? $musi->creator : '-' }}</td>
-                  <td>{{ $musi->tgl_tayang ? $musi->tgl_tayang : '-' }}</td>
+                  <td>{{ $musi->tgl_tayang ? $musi->tgl_tayang->format('d/m/Y') : '-' }}</td>
                   <td>
                       <div class="dropdown">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">

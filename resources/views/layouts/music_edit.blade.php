@@ -28,7 +28,7 @@ $link = json_decode($data->link);
             <div class="row mb-3">
             <div class="col">
               <label class="form-label">Tanggal Rilis (Optional)</label>
-              <input type="date" class="form-control" value="{{ $data->tgl_tayang ? $data->tgl_tayang : NULL }}" name="tgl_tayang">
+              <input type="date" class="form-control" value="{{ $data->tgl_tayang ? $data->tgl_tayang->format('Y-m-d'): NULL }}" name="tgl_tayang">
             </div>
             <div class="col">
               <label class="form-label">Artist</label>

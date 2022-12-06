@@ -37,7 +37,7 @@ $no = 1;
                   <td>{{ counTing($no++) }}</td>
                   <td class="text-capitalize">{{ $boo->title }}</td>
                   <td class="text-capitalize">{{ $boo->creator ? $boo->creator : '-' }}</td>
-                  <td>{{ $boo->tgl_tayang ? $boo->tgl_tayang : '-' }}</td>
+                  <td>{{ $boo->tgl_tayang ? $boo->tgl_tayang->format('d/m/Y') : '-' }}</td>
                   <td>
                       <div class="dropdown ">
                         <a href="javascript:void(0)" class="btn btn-primary w-100" role="button" data-bs-toggle="dropdown" aria-expanded="false">
